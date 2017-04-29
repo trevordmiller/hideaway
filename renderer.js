@@ -24,7 +24,17 @@ const reset = (callback) => {
   exec(`
     sleep 3
 osascript <<EOD
+
+  tell application "System Preferences"
+    activate
+    reveal pane id "com.apple.preference.general"
+    delay 1
+  end tell
+
   tell application "System Events"
+
+    click checkbox "Automatically hide and show the menu bar" of window "General" of process "System Preferences"
+    key code 12 using command down
 
     if (get autohide of dock preferences) is true then
       tell dock preferences to set autohide to not autohide
@@ -93,7 +103,17 @@ const startHideaway = () => {
 
     sleep 3
 osascript <<EOD
+
+  tell application "System Preferences"
+    activate
+    reveal pane id "com.apple.preference.general"
+    delay 1
+  end tell
+
   tell application "System Events"
+
+    click checkbox "Automatically hide and show the menu bar" of window "General" of process "System Preferences"
+    key code 12 using command down
 
     if (get autohide of dock preferences) is false then
       tell dock preferences to set autohide to not autohide
