@@ -112,7 +112,10 @@ osascript <<EOD
 
   tell application "System Events"
 
-    click checkbox "Automatically hide and show the menu bar" of window "General" of process "System Preferences"
+    set autoHideMenuBarCheckbox to checkbox "Automatically hide and show the menu bar" of window "General" of process "System Preferences"
+    tell autoHideMenuBarCheckbox
+      if not (its value as boolean) then click autoHideMenuBarCheckbox
+    end tell
     key code 12 using command down
 
     if (get autohide of dock preferences) is false then
