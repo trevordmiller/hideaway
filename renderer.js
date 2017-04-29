@@ -1,20 +1,20 @@
 const exec = require('child_process').exec
 
 const offElement = document.querySelector('#off')
-const timerMinutesElement = document.querySelector('#timer-minutes')
+const timerMinutesInputElement = document.querySelector('#minutes__input')
+const startElement = document.querySelector('#start')
 
 const onElement = document.querySelector('#on')
-const startElement = document.querySelector('#start')
+const timerValueElement = document.querySelector('#timer__value')
+const timerLabelElement = document.querySelector('#timer__label')
 const stopElement = document.querySelector('#stop')
-const timerValueElement = document.querySelector('#timer-value')
-const timerLabelElement = document.querySelector('#timer-label')
 
 let minuteInterval = null
 let hideawayTimeout = null
 
 const initialize = () => {
   initializeStyles()
-  timerMinutesElement.defaultValue = '30'
+  timerMinutesInputElement.defaultValue = '30'
 }
 
 const initializeStyles = () => {
@@ -83,7 +83,7 @@ const startHideaway = () => {
   offElement.style.display = 'none'
   onElement.style.display = 'block'
 
-  const timerMinutes = timerMinutesElement.value || 30
+  const timerMinutes = timerMinutesInputElement.value || 30
   let timerMinutesLeft = timerMinutes
 
   const updateTimer = () => {
@@ -102,7 +102,7 @@ const startHideaway = () => {
     for foregroundApp in "\${foregroundApps[@]}"
     do
       appName=$(echo "$foregroundApp" | sed 's/^ *//g')
-      if [[ ! "$appName" == "Finder" && ! "$appName" == "Electron" && ! "$appName" == "Hideaway" && ! "$appName" == "Hyper" ]]; then
+      if [[ ! "$appName" == "Finder" && ! "$appName" == "Electron" && ! "$appName" == "Hideaway" && ! "$appName" == "Hyper" && ! "$appName" == "Spotify" ]]; then
         osascript -e 'quit app "'"$appName"'"'
       fi
     done

@@ -35,35 +35,23 @@ html {
   color: #1E272C;
 }
 
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 30px;
+  width: 100%;
+  padding: 10px;
+  background: #556873;
+  color: #E6EEF3;
+  border-radius: 7px;
+  border: 2px solid transparent;
+  transition: border 0.2s;
+}
+
 input::placeholder {
   color: #1E272C;
-}
-
-a, button, input {
-  transition: opacity 0.2s;
-}
-
-a:hover, a:focus,
-button:hover, button:focus, 
-input:hover, input:focus {
-  opacity: 0.5;
-  cursor: pointer;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 300;
-}
-
-
-/* COMPONENTS */
-
-main {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
 }
 
 button {
@@ -77,16 +65,63 @@ button {
   min-width: 200px;
 }
 
+a, button {
+  transition: opacity 0.2s;
+}
+
+a:hover, a:focus,
+button:hover, button:focus {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+input:hover, input:focus {
+  border: 2px solid #7FC1CA;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+
+
+/* COMPONENTS */
+
+#root {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#minutes {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#minutes__input {
+  font-size: 60px;
+  color: #7FC1CA;
+  max-width: 200px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#minutes__label {
+  font-size: 20px;
+}
+
 #timer {
   text-align: center;
   margin-bottom: 30px;
 }
 
-#timer-value {
+#timer__value {
   font-size: 70px;
   color: #7FC1CA;
 }
 
-#timer-label {
+#timer__label {
   font-size: 20px;
 }

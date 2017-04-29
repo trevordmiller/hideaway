@@ -10,17 +10,20 @@
 
   <body>
 
-    <main>
+    <main id='root'>
 
       <div id='off'>
-        <input type='text' id='timer-minutes' />
+        <div id='minutes'>
+          <input type='text' id='minutes__input' />
+          <div id='minutes__label'>minutes</div>
+        </div>
         <button id='start'>Start Hideaway</button>
       </div>
 
       <div id='on'>
         <div id='timer'>
-          <div id='timer-value'></div>
-          <div id='timer-label'></div>
+          <div id='timer__value'></div>
+          <div id='timer__label'></div>
         </div>
         <button id='stop'>Stop Hideaway</button>
       </div>
