@@ -1,0 +1,53 @@
+/* RESET */
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('./assets/fonts/quicksand.woff2') format('woff2');
+}
+
+body {
+  margin: 0;
+  color: #899BA6;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  background: #3C4C55;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+*:focus {
+  box-shadow: none;
+  border-color: transparent;
+  outline: 1px solid #7FC1CA;
+  z-index: 1;
+}
+
+::selection {
+  background: #7FC1CA;
+  color: #1E272C;
+}
+
+input::placeholder {
+  color: #1E272C;
+}
+
+a, input {
+  transition: opacity 0.2s;
+}
+
+a:hover, input:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
