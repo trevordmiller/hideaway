@@ -2,23 +2,30 @@ const startElement = document.querySelector('#start')
 const timerElement = document.querySelector('#timer')
 const timerValueElement = document.querySelector('#timer-value')
 const timerLabelElement = document.querySelector('#timer-label')
-const endElement = document.querySelector('#end')
+const stopElement = document.querySelector('#stop')
 let minuteInterval = null
-let sessionTimeout = null
+let hideawayTimeout = null
 
 const initialize = () => {
   startElement.style.display = 'block'
   timerElement.style.display = 'none'
-  endElement.style.display = 'none'
+  stopElement.style.display = 'none'
 
   clearInterval(minuteInterval)
-  clearTimeout(sessionTimeout)
+  clearTimeout(hideawayTimeout)
 }
 
-const startSession = () => {
+const finishHideaway = () => {
+  new Notification('Hideaway', {
+    body: 'Hideaway finished'
+  })
+  initialize()
+}
+
+const startHideaway = () => {
   startElement.style.display = 'none'
   timerElement.style.display = 'block'
-  endElement.style.display = 'block'
+  stopElement.style.display = 'block'
 
   const timerMinutes = 5
   let timerMinutesLeft = timerMinutes
@@ -31,17 +38,17 @@ const startSession = () => {
 
   updateTimer()
   minuteInterval = setInterval(updateTimer, 1000)
-  sessionTimeout = setTimeout(initialize, timerMinutes * 1000)
+  hideawayTimeout = setTimeout(finishHideaway, timerMinutes * 1000)
 }
 
-const endSession = () => {
+const stopHideaway = () => {
   initialize()
 }
 
 const main = () => {
   initialize()
-  startElement.addEventListener('click', startSession)
-  endElement.addEventListener('click', endSession)
+  startElement.addEventListener('click', startHideaway)
+  stopElement.addEventListener('click', stopHideaway)
 }
 
 main()

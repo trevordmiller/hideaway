@@ -1,6 +1,6 @@
 # hideaway
 
-A native desktop app built with Electron to help you focus on a single task at a time by removing distractions
+A native desktop app built with Electron to create single tasking sessions without distractions
 
 [trevordmiller.com/projects/hideaway](https://trevordmiller.com/projects/hideaway)
 
