@@ -25,6 +25,11 @@ const reset = (callback) => {
     sleep 3
 osascript <<EOD
   tell application "System Events"
+
+    if (get autohide of dock preferences) is true then
+      tell dock preferences to set autohide to not autohide
+    end if
+
     tell application process "SystemUIServer"
       try
         key down option
@@ -34,6 +39,7 @@ osascript <<EOD
         key up option
       end try
     end tell
+
   end tell
 EOD
   `, (error) => {
@@ -88,6 +94,11 @@ const startHideaway = () => {
     sleep 3
 osascript <<EOD
   tell application "System Events"
+
+    if (get autohide of dock preferences) is false then
+      tell dock preferences to set autohide to not autohide
+    end if
+
     tell application process "SystemUIServer"
       try
         key down option
@@ -97,6 +108,7 @@ osascript <<EOD
         key up option
       end try
     end tell
+
   end tell
 EOD
     sleep 3
