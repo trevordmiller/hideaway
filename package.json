@@ -1,0 +1,17 @@
+{
+  "name": "hideaway",
+  "version": "0.1.0",
+  "description": "A native desktop app built with Electron to help you focus on a single task at a time by removing distractions",
+  "private": true,
+  "repository": "trevordmiller/hideaway",
+  "license": "MIT",
+  "author": "Trevor D. Miller (https://trevordmiller.com)",
+  "main": "index.js",
+  "scripts": {
+    "start:watch": "electron ."
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
