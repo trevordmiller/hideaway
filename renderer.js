@@ -1,18 +1,17 @@
 const exec = require('child_process').exec
 
+const offElement = document.querySelector('#off')
+const onElement = document.querySelector('#on')
 const startElement = document.querySelector('#start')
-const timerElement = document.querySelector('#timer')
+const stopElement = document.querySelector('#stop')
 const timerValueElement = document.querySelector('#timer-value')
 const timerLabelElement = document.querySelector('#timer-label')
-const stopElement = document.querySelector('#stop')
 let minuteInterval = null
 let hideawayTimeout = null
 
-
 const initialize = () => {
-  startElement.style.display = 'block'
-  timerElement.style.display = 'none'
-  stopElement.style.display = 'none'
+  offElement.style.display = 'block'
+  onElement.style.display = 'none'
 }
 
 const reset = (callback) => {
@@ -73,9 +72,8 @@ const finishHideaway = () => {
 }
 
 const startHideaway = () => {
-  startElement.style.display = 'none'
-  timerElement.style.display = 'block'
-  stopElement.style.display = 'block'
+  offElement.style.display = 'none'
+  onElement.style.display = 'block'
 
   const timerMinutes = 20
   let timerMinutesLeft = timerMinutes
