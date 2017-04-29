@@ -25,8 +25,8 @@ html {
 
 *:focus {
   box-shadow: none;
-  border-color: transparent;
-  outline: 1px solid #7FC1CA;
+  border-color: none;
+  outline: none;
   z-index: 1;
 }
 
@@ -39,15 +39,39 @@ input::placeholder {
   color: #1E272C;
 }
 
-a, input {
+a, button, input {
   transition: opacity 0.2s;
 }
 
-a:hover, input:hover {
+a:hover, a:focus,
+button:hover, button:focus, 
+input:hover, input:focus {
   opacity: 0.5;
   cursor: pointer;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
+}
+
+
+/* COMPONENTS */
+
+main {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+button {
+  background: #7FC1CA;
+  color: #1E272C;
+  border: 0;
+  padding: 20px;
+  border-radius: 7px;
+  font-size: 20px;
+  min-width: 200px;
 }
