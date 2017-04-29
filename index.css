@@ -76,3 +76,17 @@ button {
   font-size: 20px;
   min-width: 200px;
 }
+
+#timer {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#timer-value {
+  font-size: 70px;
+  color: #7FC1CA;
+}
+
+#timer-label {
+  font-size: 20px;
+}
