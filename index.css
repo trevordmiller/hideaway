@@ -67,6 +67,7 @@ main {
 }
 
 button {
+  display: inline-block;
   background: #7FC1CA;
   color: #1E272C;
   border: 0;
