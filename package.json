@@ -8,10 +8,24 @@
   "author": "Trevor D. Miller (https://trevordmiller.com)",
   "main": "index.js",
   "scripts": {
-    "start:watch": "electron ."
+    "start:watch": "electron .",
+    "lint": "eslint .",
+    "verify": "yarn lint"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6
+    }
   },
   "devDependencies": {
-    "electron": "1.6.6"
+    "electron": "1.6.6",
+    "eslint": "^3.19.0"
   },
   "dependencies": {}
 }
