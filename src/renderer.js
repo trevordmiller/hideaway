@@ -93,8 +93,8 @@ const startHideaway = () => {
   }
 
   updateTimer()
-  minuteInterval = setInterval(updateTimer, 1000)
-  hideawayTimeout = setTimeout(finishHideaway, timerMinutes * 1000)
+  minuteInterval = setInterval(updateTimer, 60000)
+  hideawayTimeout = setTimeout(finishHideaway, timerMinutes * 60000)
 
   exec(`
     foregroundAppsString=$(osascript -e 'tell application "System Events" to get name of (processes where background only is false)')

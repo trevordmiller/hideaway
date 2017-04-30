@@ -1,13 +1,18 @@
 {
   "name": "hideaway",
+  "productName": "Hideaway",
   "version": "0.1.0",
   "description": "A native desktop app built with Electron to create single tasking sessions without distractions",
   "private": true,
   "repository": "trevordmiller/hideaway",
   "license": "MIT",
   "author": "Trevor D. Miller (https://trevordmiller.com)",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "icons": "icon-convert --types icns --out assets/icons assets/icons/icon.svg",
+    "bundle": "electron-packager ./src --platform=darwin --icon=assets/icons/icon.icns --out build --overwrite",
+    "dmg": "cd ./build && create-dmg './Hideaway-darwin-x64/Hideaway.app'",
+    "build": "yarn icons && yarn bundle && yarn dmg",
     "start:watch": "electron .",
     "lint": "eslint .",
     "verify": "yarn lint"
@@ -24,8 +29,11 @@
     }
   },
   "devDependencies": {
+    "create-dmg": "^1.3.0",
     "electron": "1.6.6",
-    "eslint": "^3.19.0"
+    "electron-packager": "^8.6.0",
+    "eslint": "^3.19.0",
+    "icon-convert": "^1.0.0"
   },
   "dependencies": {}
 }

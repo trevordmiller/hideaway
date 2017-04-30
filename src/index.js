@@ -6,9 +6,9 @@ let mainWindow
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
+    show: false,
     width: 400, 
     height: 400,
-    show: false,
   })
 
   mainWindow.loadURL(url.format({
