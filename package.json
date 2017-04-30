@@ -1,7 +1,7 @@
 {
   "name": "hideaway",
   "productName": "Hideaway",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A native desktop app built with Electron to create single tasking sessions without distractions",
   "private": true,
   "repository": "trevordmiller/hideaway",
