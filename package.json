@@ -14,8 +14,10 @@
     "dmg": "cd ./build && create-dmg './Hideaway-darwin-x64/Hideaway.app'",
     "build": "yarn icons && yarn bundle && yarn dmg",
     "start:watch": "electron .",
-    "lint": "eslint .",
-    "verify": "yarn lint"
+    "lint": "eslint src",
+    "verify": "yarn lint",
+    "prerelease": "yarn version && git push && git push --tags && yarn build",
+    "release": ""
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
