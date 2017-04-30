@@ -1,6 +1,9 @@
 const exec = require('child_process').exec
 const runApplescript = require('run-applescript')
 
+const introElement = document.querySelector('#intro')
+const introSubmitElement = document.querySelector('#intro__submit')
+
 const offElement = document.querySelector('#off')
 const timerMinutesInputElement = document.querySelector('#minutes__input')
 const startElement = document.querySelector('#start')
@@ -15,12 +18,11 @@ let hideawayTimeout = null
 let userAutohidesDock = null
 
 const initializeStyles = () => {
-  offElement.style.display = 'block'
-  onElement.style.display = 'none'
 }
 
 const reset = (callback) => {
-  initializeStyles()
+  offElement.style.display = 'block'
+  onElement.style.display = 'none'
 
   clearInterval(minuteInterval)
   clearTimeout(hideawayTimeout)
@@ -134,7 +136,19 @@ const stopHideaway = () => {
 }
 
 const initialize = () => {
-  initializeStyles()
+  const hasCompletedIntro = localStorage.getItem('hasCompletedIntro')
+
+  if(!hasCompletedIntro) {
+    introSubmitElement.addEventListener('click', () => {
+      localStorage.setItem('hasCompletedIntro', true)
+      initialize()
+    })
+  }
+
+  introElement.style.display = hasCompletedIntro ? 'none' : 'block'
+  offElement.style.display = hasCompletedIntro ? 'block' : 'none'
+  onElement.style.display = 'none'
+
   timerMinutesInputElement.defaultValue = '30'
   runApplescript(`
     tell application "System Events" 
