@@ -1,4 +1,5 @@
 const exec = require('child_process').exec
+const runApplescript = require('run-applescript')
 
 const offElement = document.querySelector('#off')
 const timerMinutesInputElement = document.querySelector('#minutes__input')
@@ -11,11 +12,7 @@ const stopElement = document.querySelector('#stop')
 
 let minuteInterval = null
 let hideawayTimeout = null
-
-const initialize = () => {
-  initializeStyles()
-  timerMinutesInputElement.defaultValue = '30'
-}
+let userAutohidesDock = null
 
 const initializeStyles = () => {
   offElement.style.display = 'block'
@@ -28,24 +25,15 @@ const reset = (callback) => {
   clearInterval(minuteInterval)
   clearTimeout(hideawayTimeout)
 
-  exec(`
+  const resetApplescript = `
     sleep 3
 osascript <<EOD
-
-  tell application "System Preferences"
-    activate
-    reveal pane id "com.apple.preference.general"
-    delay 1
-  end tell
-
   tell application "System Events"
 
-    click checkbox "Automatically hide and show the menu bar" of window "General" of process "System Preferences"
-    key code 12 using command down
-
-    if (get autohide of dock preferences) is true then
-      tell dock preferences to set autohide to not autohide
-    end if
+    ${userAutohidesDock === 'false'
+      ? 'tell dock preferences to set autohide to not autohide'
+      : ''
+    }
 
     tell application process "SystemUIServer"
       try
@@ -59,7 +47,9 @@ osascript <<EOD
 
   end tell
 EOD
-  `, (error) => {
+  `
+
+  exec(resetApplescript, (error) => {
     if (error !== null) {
       new Notification('Hideaway', {
         body: `Error: ${error}`
@@ -109,20 +99,7 @@ const startHideaway = () => {
 
     sleep 3
 osascript <<EOD
-
-  tell application "System Preferences"
-    activate
-    reveal pane id "com.apple.preference.general"
-    delay 1
-  end tell
-
   tell application "System Events"
-
-    set autoHideMenuBarCheckbox to checkbox "Automatically hide and show the menu bar" of window "General" of process "System Preferences"
-    tell autoHideMenuBarCheckbox
-      if not (its value as boolean) then click autoHideMenuBarCheckbox
-    end tell
-    key code 12 using command down
 
     if (get autohide of dock preferences) is false then
       tell dock preferences to set autohide to not autohide
@@ -156,10 +133,19 @@ const stopHideaway = () => {
   reset()
 }
 
-const main = () => {
-  initialize()
-  startElement.addEventListener('click', startHideaway)
-  stopElement.addEventListener('click', stopHideaway)
+const initialize = () => {
+  initializeStyles()
+  timerMinutesInputElement.defaultValue = '30'
+  runApplescript(`
+    tell application "System Events" 
+      return get autohide of dock preferences
+    end tell
+  `)
+    .then(result => {
+      userAutohidesDock = result
+      startElement.addEventListener('click', startHideaway)
+      stopElement.addEventListener('click', stopHideaway)
+    })
 }
 
-main()
+initialize()

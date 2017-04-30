@@ -9,8 +9,8 @@
   "author": "Trevor D. Miller (https://trevordmiller.com)",
   "main": "src/index.js",
   "scripts": {
-    "icons": "icon-convert --types icns --out assets/icons assets/icons/icon.svg",
-    "bundle": "electron-packager . --platform=darwin --icon=assets/icons/icon.icns --out build --overwrite",
+    "icons": "icon-convert --types icns --out src/icons src/icons/icon.svg",
+    "bundle": "electron-packager . --platform=darwin --icon=src/icons/icon.icns --out build --overwrite",
     "dmg": "cd ./build && create-dmg './Hideaway-darwin-x64/Hideaway.app'",
     "build": "yarn icons && yarn bundle && yarn dmg",
     "start:watch": "electron .",
@@ -37,5 +37,7 @@
     "eslint": "^3.19.0",
     "icon-convert": "^1.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "run-applescript": "^3.0.0"
+  }
 }
