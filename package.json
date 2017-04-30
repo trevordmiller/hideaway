@@ -1,7 +1,7 @@
 {
   "name": "hideaway",
   "productName": "Hideaway",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A native desktop app built with Electron to create single tasking sessions without distractions",
   "private": true,
   "repository": "trevordmiller/hideaway",
@@ -10,7 +10,7 @@
   "main": "src/index.js",
   "scripts": {
     "icons": "icon-convert --types icns --out assets/icons assets/icons/icon.svg",
-    "bundle": "electron-packager ./src --platform=darwin --icon=assets/icons/icon.icns --out build --overwrite",
+    "bundle": "electron-packager . --platform=darwin --icon=assets/icons/icon.icns --out build --overwrite",
     "dmg": "cd ./build && create-dmg './Hideaway-darwin-x64/Hideaway.app'",
     "build": "yarn icons && yarn bundle && yarn dmg",
     "start:watch": "electron .",
