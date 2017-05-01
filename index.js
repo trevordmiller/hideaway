@@ -30,7 +30,7 @@ const createWindow = () => {
   })
 
   ipcMain.on('closeOtherApps', () => {
-    const closeOtherApps = require('./shellScripts/closeOtherApps')
+    const closeOtherApps = require('./appShellScripts/closeOtherApps')
     exec(closeOtherApps)
   })
 }
