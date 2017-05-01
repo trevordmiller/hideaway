@@ -42,6 +42,7 @@ class Timer extends Component {
   handleTotalMinutesChange = (totalMinutes) => {
     this.setState({
       totalMinutes,
+      minutesLeft: totalMinutes,
     })
   }
 
