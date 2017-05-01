@@ -1,6 +1,7 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 const url = require('url')
+const exec = require('child_process').exec
 
 let mainWindow
 
@@ -29,8 +30,8 @@ const createWindow = () => {
   })
 
   ipcMain.on('closeOtherApps', () => {
-    const closeOtherApps = require('./scripts/closeOtherApps')
-    closeOtherApps()
+    const closeOtherApps = require('./shellScripts/closeOtherApps')
+    exec(closeOtherApps)
   })
 }
 
