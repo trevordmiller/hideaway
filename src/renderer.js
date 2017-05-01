@@ -17,9 +17,6 @@ let minuteInterval = null
 let hideawayTimeout = null
 let userAutohidesDock = null
 
-const initializeStyles = () => {
-}
-
 const reset = (callback) => {
   offElement.style.display = 'block'
   onElement.style.display = 'none'
