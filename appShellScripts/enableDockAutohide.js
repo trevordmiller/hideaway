@@ -1,4 +1,4 @@
-const turnOnDoNotDisturb = `
+const enableDockAutohide = `
 osascript <<EOD
   tell application "System Events"
 
@@ -10,4 +10,4 @@ osascript <<EOD
 EOD
 `
 
-module.exports = turnOnDoNotDisturb
+module.exports = enableDockAutohide

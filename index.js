@@ -2,8 +2,23 @@ const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 const url = require('url')
 const exec = require('child_process').exec
+const runApplescript = require('run-applescript')
+const checkDockAutohide = require('./appShellScripts/checkDockAutohide')
+const closeOtherApps = require('./appShellScripts/closeOtherApps')
+const enableDoNotDisturb = require('./appShellScripts/enableDoNotDisturb')
+const enableDockAutohide = require('./appShellScripts/enableDockAutohide')
+const disableDoNotDisturb = require('./appShellScripts/disableDoNotDisturb')
+const disableDockAutohide = require('./appShellScripts/disableDockAutohide')
 
 let mainWindow
+let initialUserConfig = {
+  dockAutohide: null,
+}
+
+runApplescript(checkDockAutohide)
+  .then(result => {
+    initialUserConfig.dockAutohide = result
+  })
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -30,18 +45,25 @@ const createWindow = () => {
   })
 
   ipcMain.on('closeOtherApps', () => {
-    const closeOtherApps = require('./appShellScripts/closeOtherApps')
     exec(closeOtherApps)
   })
 
-  ipcMain.on('turnOnDoNotDisturb', () => {
-    const turnOnDoNotDisturb = require('./appShellScripts/turnOnDoNotDisturb')
-    exec(turnOnDoNotDisturb)
+  ipcMain.on('enableDoNotDisturb', () => {
+    exec(enableDoNotDisturb)
   })
 
-  ipcMain.on('turnOnDockAutohide', () => {
-    const turnOnDockAutohide = require('./appShellScripts/turnOnDockAutohide')
-    exec(turnOnDockAutohide)
+  ipcMain.on('enableDockAutohide', () => {
+    exec(enableDockAutohide)
+  })
+
+  ipcMain.on('disableDoNotDisturb', () => {
+    exec(disableDoNotDisturb)
+  })
+
+  ipcMain.on('disableDockAutohide', () => {
+    if (initialUserConfig.dockAutohide !== 'true') {
+      exec(disableDockAutohide)
+    }
   })
 }
 

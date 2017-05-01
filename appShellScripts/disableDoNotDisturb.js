@@ -1,4 +1,4 @@
-const turnOnDockAutohide = `
+const disableDoNotDisturb = `
 sleep 3
 osascript <<EOD
   tell application "System Events"
@@ -6,7 +6,7 @@ osascript <<EOD
     tell application process "SystemUIServer"
       try
         key down option
-        click menu bar item "Notification Center" of menu bar 1
+        click menu bar item "Notification Center, Do Not Disturb enabled" of menu bar 1
         key up option
       on error
         key up option
@@ -18,4 +18,5 @@ EOD
 sleep 3
 `
 
-module.exports = turnOnDockAutohide
+module.exports = disableDoNotDisturb
+

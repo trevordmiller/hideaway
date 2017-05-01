@@ -24,6 +24,8 @@ class Timer extends Component {
     clearInterval(minuteIntervalId)
     clearTimeout(totalMinutesTimeoutId)
     this.setState(initialState)
+    ipcRenderer.send('disableDoNotDisturb')
+    ipcRenderer.send('disableDockAutohide')
   }
 
   finish = () => {
@@ -50,8 +52,8 @@ class Timer extends Component {
   handleStart = () => {
     const {totalMinutes} = this.state
     ipcRenderer.send('closeOtherApps')
-    ipcRenderer.send('turnOnDoNotDisturb')
-    ipcRenderer.send('turnOnDockAutohide')
+    ipcRenderer.send('enableDoNotDisturb')
+    ipcRenderer.send('enableDockAutohide')
     this.setState({
       isOn: true,
       minuteIntervalId: setInterval(this.minutePassed, oneMinute),
