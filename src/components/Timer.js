@@ -1,3 +1,4 @@
+import {ipcRenderer} from 'electron'
 import React, {Component} from 'react'
 import {uiGroups} from 'nova-colors'
 import NumericInput from 'react-numeric-input'
@@ -48,6 +49,7 @@ class Timer extends Component {
 
   handleStart = () => {
     const {totalMinutes} = this.state
+    ipcRenderer.send('closeOtherApps')
     this.setState({
       isOn: true,
       minuteIntervalId: setInterval(this.minutePassed, oneMinute),
@@ -95,4 +97,3 @@ class Timer extends Component {
 }
 
 export default Timer
-

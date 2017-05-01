@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 const url = require('url')
 
@@ -26,6 +26,11 @@ const createWindow = () => {
 
   mainWindow.on('closed', () => {
     mainWindow = null
+  })
+
+  ipcMain.on('closeOtherApps', () => {
+    const closeOtherApps = require('./scripts/closeOtherApps')
+    closeOtherApps()
   })
 }
 

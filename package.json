@@ -25,12 +25,12 @@
   },
   "devDependencies": {
     "create-dmg": "^1.3.0",
-    "electron": "1.6.6",
     "electron-packager": "^8.6.0",
     "icon-convert": "^1.0.0",
     "react-scripts": "^0.9.5"
   },
   "dependencies": {
+    "electron": "^1.6.6",
     "nova-colors": "^2.1.5",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
