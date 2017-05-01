@@ -33,6 +33,16 @@ const createWindow = () => {
     const closeOtherApps = require('./appShellScripts/closeOtherApps')
     exec(closeOtherApps)
   })
+
+  ipcMain.on('turnOnDoNotDisturb', () => {
+    const turnOnDoNotDisturb = require('./appShellScripts/turnOnDoNotDisturb')
+    exec(turnOnDoNotDisturb)
+  })
+
+  ipcMain.on('turnOnDockAutohide', () => {
+    const turnOnDockAutohide = require('./appShellScripts/turnOnDockAutohide')
+    exec(turnOnDockAutohide)
+  })
 }
 
 app.on('ready', createWindow)

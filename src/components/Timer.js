@@ -50,6 +50,8 @@ class Timer extends Component {
   handleStart = () => {
     const {totalMinutes} = this.state
     ipcRenderer.send('closeOtherApps')
+    ipcRenderer.send('turnOnDoNotDisturb')
+    ipcRenderer.send('turnOnDockAutohide')
     this.setState({
       isOn: true,
       minuteIntervalId: setInterval(this.minutePassed, oneMinute),

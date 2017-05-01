@@ -38,49 +38,8 @@ EOD
   })
 }
 
-const startHideaway = () => {
-
-  exec(`
-
-    sleep 3
-osascript <<EOD
-  tell application "System Events"
-
-    if (get autohide of dock preferences) is false then
-      tell dock preferences to set autohide to not autohide
-    end if
-
-    tell application process "SystemUIServer"
-      try
-        key down option
-        click menu bar item "Notification Center" of menu bar 1
-        key up option
-      on error
-        key up option
-      end try
-    end tell
-
-  end tell
-EOD
-    sleep 3
-  `, (error) => {
-    if (error !== null) {
-      reset(() => {
-        new Notification('Hideaway', {
-          body: `Error: ${error}`
-        })
-      })
-    }
-  })
-}
-
-const stopHideaway = () => {
-  reset()
-}
-
 const initialize = () => {
 
-  timerMinutesInputElement.defaultValue = '30'
   runApplescript(`
     tell application "System Events" 
       return get autohide of dock preferences
