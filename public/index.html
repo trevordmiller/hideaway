@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>Hideaway</title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+      /* STYLE RESET */
+
+      @font-face {
+        font-family: 'Quicksand';
+        src: url('./fonts/quicksand.woff2') format('woff2');
+      }
+
+      body {
+        margin: 0;
+        color: #899BA6;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.5;
+        background: #3C4C55;
+      }
+
+      html {
+        box-sizing: border-box;
+      }
+
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+
+      *:focus {
+        box-shadow: none;
+        border-color: none;
+        outline: none;
+        z-index: 1;
+      }
+
+      ::selection {
+        background: #7FC1CA;
+        color: #1E272C;
+      }
+
+      input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: 0;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 18px;
+        width: 100%;
+        padding: 10px;
+        background: #556873;
+        color: #7FC1CA;
+        border-radius: 7px;
+        border: 2px solid transparent;
+        transition: border 0.2s;
+      }
+
+      input::placeholder {
+        color: #1E272C;
+      }
+
+      button {
+        display: inline-block;
+        background: #7FC1CA;
+        color: #1E272C;
+        border: 0;
+        padding: 20px;
+        border-radius: 7px;
+        font-size: 20px;
+        min-width: 200px;
+      }
+
+      a, button {
+        transition: opacity 0.2s;
+      }
+
+      a:hover, a:focus,
+      button:hover, button:focus {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+
+      input:hover, input:focus {
+        border: 2px solid #7FC1CA;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id='root'></div>
+  </body>
+
+</html>
