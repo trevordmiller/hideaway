@@ -9,16 +9,14 @@
   "author": "Trevor D. Miller (https://trevordmiller.com)",
   "main": "index.js",
   "scripts": {
-    "client-dev": "BROWSER=none node scripts/start.js",
-    "desktop-dev": "electron .",
-    "icons": "icon-convert --types icns --out icons icons/icon.svg",
-    "bundle": "electron-packager . --platform=darwin --icon=icons/icon.icns --out desktop-build --overwrite",
-    "dmg": "cd desktop-build && create-dmg 'Hideaway-darwin-x64/Hideaway.app'",
-    "client-build": "node scripts/build.js",
-    "desktop-build": "yarn icons && yarn bundle && yarn dmg",
-    "verify": "yarn client-build",
-    "prerelease": "yarn version && git push && git push --tags && yarn build",
-    "release": ""
+    "dev:build": "BROWSER=none node scripts/start.js",
+    "dev:server": "electron .",
+    "verify": "yarn build",
+    "build": "node scripts/build.js",
+    "release": "git checkout master && git pull && yarn build && yarn version && git push && git push --tags && yarn icns && yarn bundle && yarn dmg",
+    "icns": "icon-convert --types icns --out desktop-build icon.svg",
+    "bundle": "electron-packager . --platform=darwin --icon=desktop-build/icon.icns --out desktop-build",
+    "dmg": "cd desktop-build && create-dmg 'Hideaway-darwin-x64/Hideaway.app'"
   },
   "eslintConfig": {
     "extends": "react-app"
