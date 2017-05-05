@@ -1,6 +1,4 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
-const path = require('path')
-const url = require('url')
 const exec = require('child_process').exec
 const runApplescript = require('run-applescript')
 const checkDockAutohide = require('./utils/checkDockAutohide')
@@ -29,11 +27,7 @@ const createWindow = () => {
 
   const loadUrl = process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : url.format({
-        pathname: path.join(__dirname, 'build/index.html'),
-        protocol: 'file:',
-        slashes: true,
-      })
+    : 'next://app'
   mainWindow.loadURL(loadUrl)
 
   mainWindow.on('ready-to-show', () => {

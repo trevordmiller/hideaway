@@ -3,15 +3,10 @@
   "version": "0.5.0",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently -k 'BROWSER=none node scripts/start.js' 'NODE_ENV=development electron .' -p '{name}' -n 'react,electron' -c 'blue,green'",
-    "test:watch": "yarn test -- --watch",
-    "verify": "yarn test && yarn lint && node scripts/build.js",
-    "test": "jest src",
-    "lint": "eslint index.js utils src",
-    "icons": "icon-convert --types icns --out icons icons/icon.svg",
-    "bundle": "electron-packager . --platform=darwin --icon=icons/icon.icns --out bundle",
-    "dmg": "cd bundle && create-dmg 'Hideaway-darwin-x64/Hideaway.app'",
-    "build": "node scripts/build.js && yarn icons && yarn bundle && yarn dmg",
+    "dev": "concurrently -k 'next renderer' 'NODE_ENV=development electron main' -p '{name}' -n 'next,electron' -c 'blue,green'",
+    "verify": "yarn lint && yarn build",
+    "lint": "eslint .",
+    "build": "next build renderer",
     "release": "git checkout master && git pull && yarn build && yarn version && git push && git push --tags"
   },
   "eslintConfig": {
@@ -25,7 +20,6 @@
     "env": {
       "es6": true,
       "node": true,
-      "jest": true,
       "browser": true
     },
     "parserOptions": {
@@ -44,57 +38,15 @@
       ]
     }
   },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
-  "productName": "Hideaway",
   "devDependencies": {
-    "autoprefixer": "6.7.2",
-    "babel-core": "6.22.1",
-    "babel-eslint": "7.1.1",
-    "babel-loader": "6.2.10",
-    "babel-preset-react-app": "^2.2.0",
-    "babel-runtime": "^6.20.0",
-    "case-sensitive-paths-webpack-plugin": "1.1.4",
-    "chalk": "1.1.3",
     "concurrently": "^3.4.0",
-    "connect-history-api-fallback": "1.3.0",
-    "create-dmg": "^1.3.0",
-    "cross-spawn": "4.0.2",
-    "css-loader": "0.26.1",
-    "detect-port": "1.1.0",
-    "dotenv": "2.0.0",
-    "electron-packager": "^8.6.0",
-    "eslint": "3.16.1",
-    "eslint-config-react-app": "^0.6.2",
-    "eslint-loader": "1.6.0",
-    "eslint-plugin-flowtype": "2.21.0",
-    "eslint-plugin-import": "2.0.1",
-    "eslint-plugin-jsx-a11y": "4.0.0",
-    "eslint-plugin-react": "6.4.1",
-    "extract-text-webpack-plugin": "1.0.1",
-    "file-loader": "0.10.0",
-    "fs-extra": "0.30.0",
-    "html-webpack-plugin": "2.24.0",
-    "http-proxy-middleware": "0.17.3",
-    "icon-convert": "^1.0.0",
-    "jest": "^19.0.2",
-    "json-loader": "0.5.4",
-    "object-assign": "4.1.1",
-    "postcss-loader": "1.2.2",
-    "promise": "7.1.1",
-    "react-dev-utils": "^0.5.2",
-    "style-loader": "0.13.1",
-    "url-loader": "0.5.7",
-    "webpack": "1.14.0",
-    "webpack-dev-server": "1.16.2",
-    "webpack-manifest-plugin": "1.1.0",
-    "whatwg-fetch": "2.0.2"
+    "electron": "^1.6.6",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^6.10.3"
   },
   "dependencies": {
-    "electron": "^1.6.6",
+    "babili-webpack-plugin": "^0.0.11",
+    "next": "^2.3.1",
     "nova-colors": "^2.1.5",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

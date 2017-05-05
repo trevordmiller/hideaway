@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Screen from './Screen'
 import Intro from './Intro'
 import Timer from './Timer'
 
@@ -29,19 +30,21 @@ class Hideaway extends Component {
   render() {
     const {hasCompletedIntro} = this.state
     return (
-      <main style={{
-        padding: 30,
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-        {!hasCompletedIntro
-          ? <Intro handleCompleteIntro={this.handleCompleteIntro} />
-          : <Timer />
-        }
-      </main>
+      <Screen>
+        <main style={{
+          minHeight: '100vh',
+          padding: 30,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          {!hasCompletedIntro
+            ? <Intro handleCompleteIntro={this.handleCompleteIntro} />
+            : <Timer />
+          }
+        </main>
+      </Screen>
     )
   }
 }
