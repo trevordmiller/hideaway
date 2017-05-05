@@ -8,7 +8,7 @@
     "verify": "yarn test && yarn lint && yarn build",
     "test": "jest .",
     "lint": "eslint .",
-    "icns": "icon-convert --types icns --out icons icons/icon.svg",
+    "icons": "icon-convert --types icns --out icons icons/icon.svg",
     "bundle": "electron-packager . --platform=darwin --icon=icons/icon.icns --out bundle",
     "dmg": "cd bundle && create-dmg 'Hideaway-darwin-x64/Hideaway.app'",
     "build": "node scripts/build.js && icons && bundle && dmg",
