@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "concurrently -k 'BROWSER=none node scripts/start.js' 'electron .' -p '{name}' -n 'react,electron' -c 'blue,green'",
     "test:watch": "yarn test -- --watch",
-    "verify": "yarn test && yarn lint && yarn build",
-    "test": "jest .",
-    "lint": "eslint .",
+    "verify": "yarn test && yarn lint && node scripts/build.js",
+    "test": "jest src",
+    "lint": "eslint index.js utils src",
     "icons": "icon-convert --types icns --out icons icons/icon.svg",
     "bundle": "electron-packager . --platform=darwin --icon=icons/icon.icns --out bundle",
     "dmg": "cd bundle && create-dmg 'Hideaway-darwin-x64/Hideaway.app'",
