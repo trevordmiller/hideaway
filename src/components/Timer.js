@@ -3,9 +3,9 @@ import React, {Component} from 'react'
 import {uiGroups} from 'nova-colors'
 import NumericInput from 'react-numeric-input'
 
-const oneMinute = process.env.NODE_ENV === 'production'
-  ? 60000
-  : 1000
+const oneMinute = process.env.NODE_ENV === 'development'
+  ? 1000
+  : 60000
 
 const initialState = {
   isOn: false,
@@ -30,15 +30,12 @@ class Timer extends Component {
     clearInterval(minuteIntervalId)
     clearTimeout(totalMinutesTimeoutId)
     this.setState(initialState)
-    ipcRenderer.send('disableDoNotDisturb')
-    ipcRenderer.send('disableDockAutohide')
+    ipcRenderer.send('reset')
   }
 
   finish() {
     this.reset()
-    new Notification('Hideaway', {
-      body: 'Hideaway finished'
-    })
+    ipcRenderer.send('finish')
   }
 
   minutePassed() {
@@ -57,14 +54,12 @@ class Timer extends Component {
 
   handleStart() {
     const {totalMinutes} = this.state
-    ipcRenderer.send('closeOtherApps')
-    ipcRenderer.send('enableDoNotDisturb')
-    ipcRenderer.send('enableDockAutohide')
     this.setState({
       isOn: true,
       minuteIntervalId: setInterval(this.minutePassed, oneMinute),
       totalMinutesTimeoutId: setTimeout(this.finish, totalMinutes * oneMinute),
     })
+    ipcRenderer.send('start')
   }
 
   handleStop() {

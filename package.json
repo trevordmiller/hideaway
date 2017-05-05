@@ -3,7 +3,7 @@
   "version": "0.5.0",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently -k 'BROWSER=none node scripts/start.js' 'electron .' -p '{name}' -n 'react,electron' -c 'blue,green'",
+    "dev": "concurrently -k 'BROWSER=none node scripts/start.js' 'NODE_ENV=development electron .' -p '{name}' -n 'react,electron' -c 'blue,green'",
     "test:watch": "yarn test -- --watch",
     "verify": "yarn test && yarn lint && node scripts/build.js",
     "test": "jest src",

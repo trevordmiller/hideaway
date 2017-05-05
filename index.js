@@ -27,13 +27,13 @@ const createWindow = () => {
     height: 500,
   })
 
-  const loadUrl = process.env.NODE_ENV === 'production'
-    ? url.format({
+  const loadUrl = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : url.format({
         pathname: path.join(__dirname, 'build/index.html'),
         protocol: 'file:',
         slashes: true,
       })
-    : 'http://localhost:3000'
   mainWindow.loadURL(loadUrl)
 
   mainWindow.on('ready-to-show', () => {
@@ -44,26 +44,24 @@ const createWindow = () => {
     mainWindow = null
   })
 
-  ipcMain.on('closeOtherApps', () => {
+  ipcMain.on('start', () => {
     exec(closeOtherApps)
-  })
-
-  ipcMain.on('enableDoNotDisturb', () => {
     exec(enableDoNotDisturb)
-  })
-
-  ipcMain.on('enableDockAutohide', () => {
     exec(enableDockAutohide)
   })
 
-  ipcMain.on('disableDoNotDisturb', () => {
+  ipcMain.on('reset', () => {
     exec(disableDoNotDisturb)
-  })
-
-  ipcMain.on('disableDockAutohide', () => {
     if (initialUserConfig.dockAutohide !== 'true') {
       exec(disableDockAutohide)
     }
+  })
+
+  ipcMain.on('finish', () => {
+    new Notification('Hideaway', {
+      body: 'Hideaway finished'
+    })
+    mainWindow.show()
   })
 }
 
