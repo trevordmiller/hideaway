@@ -3,12 +3,12 @@ const path = require('path')
 const url = require('url')
 const exec = require('child_process').exec
 const runApplescript = require('run-applescript')
-const checkDockAutohide = require('./appShellScripts/checkDockAutohide')
-const closeOtherApps = require('./appShellScripts/closeOtherApps')
-const enableDoNotDisturb = require('./appShellScripts/enableDoNotDisturb')
-const enableDockAutohide = require('./appShellScripts/enableDockAutohide')
-const disableDoNotDisturb = require('./appShellScripts/disableDoNotDisturb')
-const disableDockAutohide = require('./appShellScripts/disableDockAutohide')
+const checkDockAutohide = require('./utils/checkDockAutohide')
+const closeOtherApps = require('./utils/closeOtherApps')
+const enableDoNotDisturb = require('./utils/enableDoNotDisturb')
+const enableDockAutohide = require('./utils/enableDockAutohide')
+const disableDoNotDisturb = require('./utils/disableDoNotDisturb')
+const disableDockAutohide = require('./utils/disableDockAutohide')
 
 let mainWindow
 let initialUserConfig = {

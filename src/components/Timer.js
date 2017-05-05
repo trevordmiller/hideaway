@@ -17,9 +17,15 @@ const initialState = {
 
 class Timer extends Component {
 
-  state = initialState
+  constructor(props) {
+    super(props)
+    this.state = initialState
+    this.handleTotalMinutesChange = this.handleTotalMinutesChange.bind(this)
+    this.handleStart = this.handleStart.bind(this)
+    this.handleStop = this.handleStop.bind(this)
+  }
 
-  reset = () => {
+  reset() {
     const {minuteIntervalId, totalMinutesTimeoutId} = this.state
     clearInterval(minuteIntervalId)
     clearTimeout(totalMinutesTimeoutId)
@@ -28,28 +34,28 @@ class Timer extends Component {
     ipcRenderer.send('disableDockAutohide')
   }
 
-  finish = () => {
+  finish() {
     this.reset()
     new Notification('Hideaway', {
       body: 'Hideaway finished'
     })
   }
 
-  minutePassed = () => {
+  minutePassed() {
     const {minutesLeft} = this.state
     this.setState({
       minutesLeft: minutesLeft - 1,
     })
   }
 
-  handleTotalMinutesChange = (totalMinutes) => {
+  handleTotalMinutesChange(totalMinutes) {
     this.setState({
       totalMinutes,
       minutesLeft: totalMinutes,
     })
   }
 
-  handleStart = () => {
+  handleStart() {
     const {totalMinutes} = this.state
     ipcRenderer.send('closeOtherApps')
     ipcRenderer.send('enableDoNotDisturb')
@@ -61,7 +67,7 @@ class Timer extends Component {
     })
   }
 
-  handleStop = () => {
+  handleStop() {
     this.reset()
   }
 

@@ -4,18 +4,22 @@ import Timer from './Timer'
 
 class Hideaway extends Component {
 
-  state = {
-    hasCompletedIntro: false,
+  constructor(props) {
+    super(props)
+    this.state = {
+      hasCompletedIntro: false,
+    }
+    this.handleCompleteIntro = this.handleCompleteIntro.bind(this)
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     const hasCompletedIntro = localStorage.getItem('hasCompletedIntro')
     this.setState({
       hasCompletedIntro,
     })
   }
 
-  handleCompleteIntro = () => {
+  handleCompleteIntro() {
     localStorage.setItem('hasCompletedIntro', true)
     this.setState({
       hasCompletedIntro: true,
