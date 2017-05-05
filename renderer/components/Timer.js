@@ -17,13 +17,7 @@ const initialState = {
 
 class Timer extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = initialState
-    this.handleTotalMinutesChange = this.handleTotalMinutesChange.bind(this)
-    this.handleStart = this.handleStart.bind(this)
-    this.handleStop = this.handleStop.bind(this)
-  }
+  state = initialState
 
   reset() {
     const {minuteIntervalId, totalMinutesTimeoutId} = this.state
@@ -45,14 +39,14 @@ class Timer extends Component {
     })
   }
 
-  handleTotalMinutesChange(totalMinutes) {
+  handleTotalMinutesChange = (totalMinutes) => {
     this.setState({
       totalMinutes,
       minutesLeft: totalMinutes,
     })
   }
 
-  handleStart() {
+  handleStart = () => {
     const {totalMinutes} = this.state
     this.setState({
       isOn: true,
@@ -62,7 +56,7 @@ class Timer extends Component {
     ipcRenderer.send('start')
   }
 
-  handleStop() {
+  handleStop = () => {
     this.reset()
   }
 

@@ -36,9 +36,11 @@
       "react/prop-types": [
         "off"
       ]
-    }
+    },
+    "parser": "babel-eslint"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
     "concurrently": "^3.4.0",
     "electron": "^1.6.6",
     "eslint": "^3.19.0",
