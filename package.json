@@ -11,7 +11,7 @@
     "icons": "icon-convert --types icns --out icons icons/icon.svg",
     "bundle": "electron-packager . --platform=darwin --icon=icons/icon.icns --out bundle",
     "dmg": "cd bundle && create-dmg 'Hideaway-darwin-x64/Hideaway.app'",
-    "build": "node scripts/build.js && icons && bundle && dmg",
+    "build": "node scripts/build.js && yarn icons && yarn bundle && yarn dmg",
     "release": "git checkout master && git pull && yarn build && yarn version && git push && git push --tags"
   },
   "eslintConfig": {
