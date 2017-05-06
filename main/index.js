@@ -38,7 +38,6 @@ const createWindow = () => {
     mainWindow = null
   })
 
-  /*
   ipcMain.on('start', () => {
     exec(closeOtherApps)
     exec(enableDoNotDisturb)
@@ -58,7 +57,6 @@ const createWindow = () => {
     })
     mainWindow.show()
   })
-  */
 }
 
 app.on('ready', createWindow)
