@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain} = require('electron')
+const {app, BrowserWindow, ipcMain, shell} = require('electron')
 const exec = require('child_process').exec
 const runApplescript = require('run-applescript')
 const checkDockAutohide = require('./utils/checkDockAutohide')
@@ -52,10 +52,8 @@ const createWindow = () => {
   })
 
   ipcMain.on('finish', () => {
-    new Notification('Hideaway', {
-      body: 'Hideaway finished'
-    })
     mainWindow.show()
+    shell.beep()
   })
 }
 
