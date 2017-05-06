@@ -1,11 +1,11 @@
 const {app, BrowserWindow, ipcMain, shell} = require('electron')
 const exec = require('child_process').exec
 const runApplescript = require('run-applescript')
-const checkDockAutohide = require('./utils/checkDockAutohide')
 const closeOtherApps = require('./utils/closeOtherApps')
 const enableDoNotDisturb = require('./utils/enableDoNotDisturb')
-const enableDockAutohide = require('./utils/enableDockAutohide')
 const disableDoNotDisturb = require('./utils/disableDoNotDisturb')
+const checkDockAutohide = require('./utils/checkDockAutohide')
+const enableDockAutohide = require('./utils/enableDockAutohide')
 const disableDockAutohide = require('./utils/disableDockAutohide')
 
 let mainWindow
