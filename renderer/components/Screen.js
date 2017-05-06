@@ -8,7 +8,6 @@ import {
   fontWeights, 
   animationSpeeds,
   borderSizes,
-  borderRadii,
   opacities,
 } from '../utils/styleGuide'
 
