@@ -25,10 +25,10 @@ const createWindow = () => {
     height: 500,
   })
 
-  const loadUrl = process.env.NODE_ENV === 'development'
+  mainWindow.loadURL(process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : 'next://app'
-  mainWindow.loadURL(loadUrl)
+  )
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -38,6 +38,7 @@ const createWindow = () => {
     mainWindow = null
   })
 
+  /*
   ipcMain.on('start', () => {
     exec(closeOtherApps)
     exec(enableDoNotDisturb)
@@ -57,6 +58,7 @@ const createWindow = () => {
     })
     mainWindow.show()
   })
+  */
 }
 
 app.on('ready', createWindow)

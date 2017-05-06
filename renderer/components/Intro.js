@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button'
 
 const Intro = ({handleCompleteIntro}) => (
   <section>
@@ -18,9 +19,9 @@ const Intro = ({handleCompleteIntro}) => (
       <li>Select "Hideaway"</li>
     </ul>
 
-    <button onClick={handleCompleteIntro}>
+    <Button onClick={handleCompleteIntro}>
       Done
-    </button>
+    </Button>
 
   </section>
 )

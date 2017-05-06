@@ -37,7 +37,7 @@ export const spacing = {
 }
 
 export const lineHeights = {
-  xxlarge: 1.25,
+  small: 1.15,
   medium: 1.5,
 }
 

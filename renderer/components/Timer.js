@@ -1,7 +1,9 @@
 import {ipcRenderer} from 'electron'
 import React, {Component} from 'react'
 import {uiGroups} from 'nova-colors'
-import NumericInput from 'react-numeric-input'
+import {spacing, fontSizes, lineHeights} from '../utils/styleGuide'
+import TimeInput from './TimeInput'
+import Button from './Button'
 
 const oneMinute = process.env.NODE_ENV === 'development'
   ? 1000
@@ -67,28 +69,31 @@ class Timer extends Component {
 
         {isOn
           ? <div style={{
+              fontSize: fontSizes.xlarge,
+              paddingTop: spacing.small,
+              paddingBottom: spacing.small,
               color: uiGroups.userCurrentState,
+              textAlign: 'center',
+              lineHeight: lineHeights.small,
             }}>
               {minutesLeft}
             </div>
-          : <NumericInput 
+          : <TimeInput
               value={totalMinutes} 
-              min={15}
-              max={300}
-              step={15}
               onChange={this.handleTotalMinutesChange} 
-              readOnly
-              mobile
             />
         }
 
-        <div>
+        <div style={{
+          marginBottom: spacing.medium,
+          textAlign: 'center',
+        }}>
           {isOn ? 'minutes left' : 'minutes'}
         </div>
 
-        <button onClick={isOn ? this.handleStop : this.handleStart}>
+        <Button onClick={isOn ? this.handleStop : this.handleStart}>
           {`${isOn ? 'Stop' : 'Start'} Hideaway`}
-        </button>
+        </Button>
 
       </div>
     )

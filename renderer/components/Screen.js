@@ -6,10 +6,7 @@ import {
   lineHeights, 
   fontSizes, 
   fontWeights, 
-  spacing, 
   animationSpeeds,
-  borderRadii,
-  borderSizes,
 } from '../utils/styleGuide'
 
 const Screen = ({children}) => (
@@ -34,14 +31,13 @@ const Screen = ({children}) => (
           html {
             box-sizing: border-box;
           }
-
           *, *:before, *:after {
             box-sizing: inherit;
           }
 
           *:focus {
             box-shadow: none;
-            border-color: none;
+            border: none;
             outline: none;
             z-index: 1;
           }
@@ -51,52 +47,19 @@ const Screen = ({children}) => (
             color: ${uiGroups.backgroundShade};
           }
 
-          input {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            border: 0;
-            font-family: ${fontFamilies.primary};
-            font-size: ${fontSizes.large}px;
-            width: 100%;
-            padding: ${spacing.medium}px;
-            background: ${uiGroups.gray3};
-            color: ${uiGroups.userCurrentState};
-            border-radius: ${borderRadii.medium}px;
-            border: ${borderSizes.small}px solid transparent;
-            transition: border ${animationSpeeds.xfast}s;
-          }
-
-          input::placeholder {
-            color: ${uiGroups.backgroundShade};
-          }
-
           button {
-            display: inline-block;
-            border: 0;
-            background: ${uiGroups.userCurrentState};
-            color: ${uiGroups.backgroundShade};
-            padding: ${spacing.medium}px;
-            border-radius: ${borderRadii.medium}px;
-            font-size: ${fontSizes.large}px;
-            min-width: 200px;
-          }
-
-          a, button {
             transition: opacity ${animationSpeeds.xfast}s;
           }
-
-          a:hover, a:focus,
           button:hover, button:focus {
             opacity: 0.5;
             cursor: pointer;
           }
 
           input {
-            transition: border ${animationSpeeds.xfast}s;
+            border: 0 !important;
           }
-
-          input:hover, input:focus {
-            border: 2px solid ${uiGroups.userCurrentState};
+          input::placeholder {
+            color: ${uiGroups.backgroundShade};
           }
         `}
       </style>
