@@ -1,3 +1,4 @@
+import {ipcRenderer} from 'electron'
 import React, {Component} from 'react'
 import Intro from './Intro'
 import Timer from './Timer'
@@ -9,14 +10,14 @@ class Hideaway extends Component {
   }
 
   componentDidMount = () => {
-    const hasCompletedIntro = Boolean(localStorage.getItem('hasCompletedIntro'))
+    const hasCompletedIntro = ipcRenderer.sendSync('getConfig', 'hasCompletedIntro') 
     this.setState({
       hasCompletedIntro,
     })
   }
 
   handleCompleteIntro = () => {
-    localStorage.setItem('hasCompletedIntro', true)
+    ipcRenderer.send('setConfig', 'hasCompletedIntro', true) 
     this.setState({
       hasCompletedIntro: true,
     })

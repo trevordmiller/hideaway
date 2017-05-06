@@ -1,4 +1,5 @@
 const {app, BrowserWindow, ipcMain, shell} = require('electron')
+const Config = require('electron-config')
 const exec = require('child_process').exec
 const runApplescript = require('run-applescript')
 const closeOtherApps = require('./utils/closeOtherApps')
@@ -9,7 +10,8 @@ const enableDockAutohide = require('./utils/enableDockAutohide')
 const disableDockAutohide = require('./utils/disableDockAutohide')
 
 let mainWindow
-let userConfig = {}
+let sessionConfig = {}
+const config = new Config()
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -35,10 +37,19 @@ const createWindow = () => {
     mainWindow = null
   })
 
+  ipcMain.on('getConfig', (event, key) => {
+    const value = config.get(key)
+    event.returnValue = value || false
+  })
+
+  ipcMain.on('setConfig', (event, key, value) => {
+    config.set(key, value)
+  })
+
   ipcMain.on('start', () => {
     runApplescript(checkDockAutohide)
       .then(result => {
-        userConfig.dockAutohide = result
+        sessionConfig.dockAutohide = result === 'true' ? true : false
         exec(closeOtherApps)
         exec(enableDoNotDisturb)
         exec(enableDockAutohide)
@@ -47,7 +58,7 @@ const createWindow = () => {
 
   ipcMain.on('reset', () => {
     exec(disableDoNotDisturb)
-    if (userConfig.dockAutohide === 'false') {
+    if (sessionConfig.dockAutohide === false) {
       exec(disableDockAutohide)
     }
   })

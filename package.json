@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "babili-webpack-plugin": "^0.0.11",
+    "electron-config": "^1.0.0",
     "next": "^2.3.1",
     "nova-colors": "^2.1.5",
     "react": "^15.5.4",
