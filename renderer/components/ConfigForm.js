@@ -1,7 +1,8 @@
 import {ipcRenderer} from 'electron'
 import React, {Component} from 'react'
+import {spacing} from '../utils/styleGuide'
 import Button from './Button'
-import Paragraph from './Paragraph'
+import Heading from './Heading'
 import Textarea from './Textarea'
 
 class ConfigForm extends Component {
@@ -44,21 +45,25 @@ class ConfigForm extends Component {
     return (
       <div>
 
-        <Paragraph>
+        <Heading>
           {description}
-        </Paragraph>
+        </Heading>
 
         <Textarea
           value={value}
           onChange={this.handleValueChange}
         />
 
-        {isSaved
-          ? null
-          : <Button onClick={this.handleSave}>
-              Save
-            </Button>
-        }
+        <div style={{
+          marginTop: spacing.small,
+          visibility: isSaved ? 'hidden' : 'visible',
+        }}>
+          <Button 
+            onClick={this.handleSave}
+          >
+            Save
+          </Button>
+        </div>
 
       </div>
     )

@@ -1,5 +1,5 @@
 import React from 'react'
-import {uiGroups, spacing, fontSizes} from '../utils/styleGuide'
+import {uiGroups, spacing, fontSizes, borderRadii} from '../utils/styleGuide'
 
 const Textarea = ({value, onChange}) => (
   <div>
@@ -14,6 +14,7 @@ const Textarea = ({value, onChange}) => (
         fontSize: fontSizes.medium,
         padding: spacing.medium,
         width: '100%',
+        borderRadius: borderRadii.medium,
       }}
     />
   </div>

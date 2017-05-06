@@ -39,7 +39,7 @@ class Hideaway extends Component {
     return (
       <main style={{
         minHeight: '100vh',
-        padding: spacing.large,
+        padding: spacing.xlarge,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

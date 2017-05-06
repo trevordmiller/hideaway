@@ -59,7 +59,6 @@ class Intro extends Component {
     return (
       <section style={{
         textAlign: 'center',
-        maxWidth: 300,
       }}>
 
         <Paragraph>
@@ -78,7 +77,7 @@ class Intro extends Component {
             </Heading>
           </div>
           <div style={{
-            maxHeight: 175,
+            maxHeight: 200,
           }}>
             <Image src={steps[currentStep].imageSrc} />
           </div>
