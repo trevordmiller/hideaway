@@ -1,29 +1,102 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {spacing} from '../utils/styleGuide'
+import Heading from './Heading'
+import Image from './Image'
+import Paragraph from './Paragraph'
 import Button from './Button'
 
-const Intro = ({handleCompleteIntro}) => (
-  <section>
+const steps = [
+  {
+    description: 'Open "System Preferences"',
+    imageSrc: '/static/images/setup-system-preferences.png',
+  },
+  {
+    description: 'Tap "Security & Privacy"',
+    imageSrc: '/static/images/setup-security.png',
+  },
+  {
+    description: 'Tap "Privacy"',
+    imageSrc: '/static/images/setup-privacy.png',
+  },
+  {
+    description: 'Select "Accessibility"',
+    imageSrc: '/static/images/setup-accessibility.png',
+  },
+  {
+    description: 'Tap "Click the lock to make changes"',
+    imageSrc: '/static/images/setup-unlock.png',
+  },
+  {
+    description: 'Tap "+"',
+    imageSrc: '/static/images/setup-add.png',
+  },
+  {
+    description: 'Select "Hideaway"',
+    imageSrc: '/static/images/setup-select-hideaway.png',
+  },
+  {
+    description: 'It should look like this',
+    imageSrc: '/static/images/setup-complete.png',
+  },
+]
 
-    <p>
-      Since this is your first time using Hideaway, you need to give it permission to control your screen
-    </p>
+class Intro extends Component {
 
-    <ul>
-      <li>Open "System Preferences"</li>
-      <li>Tap "Security & Privacy"</li>
-      <li>Select "Privacy"</li>
-      <li>Select "Accessibility"</li>
-      <li>Tap "Click the lock to make changes" and enter your password</li>
-      <li>Tap "+"</li>
-      <li>Navigate to your "Applications" folder</li>
-      <li>Select "Hideaway"</li>
-    </ul>
+  state = {
+    currentStep: 0,
+  }
 
-    <Button onClick={handleCompleteIntro}>
-      Done
-    </Button>
+  handleNextStep = () => {
+    const {currentStep} = this.state
+    this.setState({
+      currentStep: currentStep + 1,
+    })
+  }
 
-  </section>
-)
+  render() {
+    const {currentStep} = this.state
+    const {handleCompleteIntro} = this.props
+    return (
+      <section style={{
+        textAlign: 'center',
+        maxWidth: 300,
+      }}>
+
+        <Paragraph>
+          To let Hideaway control your screen...
+        </Paragraph>
+
+        <div style={{
+          marginTop: spacing.small,
+          marginBottom: spacing.small,
+        }}>
+          <div style={{
+            marginBottom: spacing.xsmall,
+          }}>
+            <Heading>
+              {steps[currentStep].description}
+            </Heading>
+          </div>
+          <div style={{
+            maxHeight: 175,
+          }}>
+            <Image src={steps[currentStep].imageSrc} />
+          </div>
+        </div>
+
+        <Button onClick={currentStep < (steps.length - 1)
+          ? this.handleNextStep
+          : handleCompleteIntro
+        }>
+          {currentStep < (steps.length - 1)
+            ? 'Next'
+            : 'Done'
+          }
+        </Button>
+
+      </section>
+    )
+  }
+}
 
 export default Intro

@@ -1,16 +1,15 @@
 import React, {Component} from 'react'
-import Screen from './Screen'
 import Intro from './Intro'
 import Timer from './Timer'
 
 class Hideaway extends Component {
 
   state = {
-    hasCompletedIntro: false,
+    hasCompletedIntro: true,
   }
 
   componentDidMount() {
-    const hasCompletedIntro = localStorage.getItem('hasCompletedIntro')
+    const hasCompletedIntro = Boolean(localStorage.getItem('hasCompletedIntro'))
     this.setState({
       hasCompletedIntro,
     })
@@ -26,21 +25,19 @@ class Hideaway extends Component {
   render() {
     const {hasCompletedIntro} = this.state
     return (
-      <Screen>
-        <main style={{
-          minHeight: '100vh',
-          padding: 30,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-          {!hasCompletedIntro
-            ? <Intro handleCompleteIntro={this.handleCompleteIntro} />
-            : <Timer />
-          }
-        </main>
-      </Screen>
+      <main style={{
+        minHeight: '100vh',
+        padding: 30,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        {hasCompletedIntro
+          ? <Timer />
+          : <Intro handleCompleteIntro={this.handleCompleteIntro} />
+        }
+      </main>
     )
   }
 }
