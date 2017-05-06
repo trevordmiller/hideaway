@@ -8,7 +8,7 @@ class Hideaway extends Component {
     hasCompletedIntro: true,
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     const hasCompletedIntro = Boolean(localStorage.getItem('hasCompletedIntro'))
     this.setState({
       hasCompletedIntro,

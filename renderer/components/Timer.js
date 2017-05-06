@@ -21,7 +21,7 @@ class Timer extends Component {
 
   state = initialState
 
-  reset() {
+  reset = () => {
     const {minuteIntervalId, totalMinutesTimeoutId} = this.state
     clearInterval(minuteIntervalId)
     clearTimeout(totalMinutesTimeoutId)
@@ -29,12 +29,12 @@ class Timer extends Component {
     ipcRenderer.send('reset')
   }
 
-  finish() {
+  finish = () => {
     this.reset()
     ipcRenderer.send('finish')
   }
 
-  minutePassed() {
+  minutePassed = () => {
     const {minutesLeft} = this.state
     this.setState({
       minutesLeft: minutesLeft - 1,
