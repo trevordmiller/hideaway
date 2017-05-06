@@ -1,12 +1,16 @@
 import {ipcRenderer} from 'electron'
 import React, {Component} from 'react'
+import {FaClose, FaCog} from 'react-icons/lib/fa';
+import {spacing, fontSizes, uiGroups} from '../utils/styleGuide'
 import Intro from './Intro'
+import Settings from './Settings'
 import Timer from './Timer'
 
 class Hideaway extends Component {
 
   state = {
     hasCompletedIntro: true,
+    isSettingsActive: false,
   }
 
   componentDidMount = () => {
@@ -23,19 +27,45 @@ class Hideaway extends Component {
     })
   }
 
+  handleSettingsToggle = () => {
+    const {isSettingsActive} = this.state
+    this.setState({
+      isSettingsActive: !isSettingsActive,
+    })
+  }
+
   render() {
-    const {hasCompletedIntro} = this.state
+    const {hasCompletedIntro, isSettingsActive} = this.state
     return (
       <main style={{
         minHeight: '100vh',
-        padding: 30,
+        padding: spacing.large,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        position: 'relative',
       }}>
+        <nav style={{
+          position: 'absolute',
+          fontSize: fontSizes.large,
+          top: spacing.large,
+          right: spacing.large,
+          color: isSettingsActive
+            ? uiGroups.userCurrentState
+            : uiGroups.gray4
+        }}>
+          <a onClick={this.handleSettingsToggle}>
+            {isSettingsActive
+              ? <FaClose />
+              : <FaCog />
+            }
+          </a>
+        </nav>
         {hasCompletedIntro
-          ? <Timer />
+          ? isSettingsActive
+            ? <Settings />
+            : <Timer />
           : <Intro handleCompleteIntro={this.handleCompleteIntro} />
         }
       </main>

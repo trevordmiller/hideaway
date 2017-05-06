@@ -53,6 +53,10 @@ const createWindow = () => {
         exec(closeOtherApps)
         exec(enableDoNotDisturb)
         exec(enableDockAutohide)
+        const scriptOnStart = config.get('scriptOnStart')
+        if(scriptOnStart) {
+          exec(scriptOnStart)
+        }
       })
   })
 

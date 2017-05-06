@@ -3353,6 +3353,12 @@ prop-types@15.5.7, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@~15.5.7:
   dependencies:
     fbjs "^0.8.9"
 
+prop-types@15.5.8:
+  version "15.5.8"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
+  dependencies:
+    fbjs "^0.8.9"
+
 prr@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/prr/-/prr-0.0.0.tgz#1a84b85908325501411853d0081ee3fa86e2926a"
@@ -3438,6 +3444,18 @@ react-hot-loader@3.0.0-beta.6:
     react-proxy "^3.0.0-alpha.0"
     redbox-react "^1.2.5"
     source-map "^0.4.4"
+
+react-icon-base@2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/react-icon-base/-/react-icon-base-2.0.6.tgz#b22e635cb39b109ba96e77c48fa345def29571b2"
+  dependencies:
+    prop-types "15.5.8"
+
+react-icons@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-2.2.4.tgz#51360baf89a644886ca3221c99de3c9dba98c1cc"
+  dependencies:
+    react-icon-base "2.0.6"
 
 react-numeric-input@^2.0.7:
   version "2.0.7"
