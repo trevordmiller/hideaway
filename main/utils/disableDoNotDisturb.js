@@ -2,7 +2,6 @@ const disableDoNotDisturb = `
 sleep 3
 osascript <<EOD
   tell application "System Events"
-
     tell application process "SystemUIServer"
       try
         key down option
@@ -12,7 +11,6 @@ osascript <<EOD
         key up option
       end try
     end tell
-
   end tell
 EOD
 sleep 3

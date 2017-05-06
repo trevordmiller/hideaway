@@ -9,14 +9,7 @@ const disableDoNotDisturb = require('./utils/disableDoNotDisturb')
 const disableDockAutohide = require('./utils/disableDockAutohide')
 
 let mainWindow
-let initialUserConfig = {
-  dockAutohide: null,
-}
-
-runApplescript(checkDockAutohide)
-  .then(result => {
-    initialUserConfig.dockAutohide = result
-  })
+let userConfig = {}
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -34,19 +27,27 @@ const createWindow = () => {
     mainWindow.show()
   })
 
+  if(process.env.NODE_ENV === 'development') {
+    mainWindow.webContents.openDevTools()
+  }
+
   mainWindow.on('closed', () => {
     mainWindow = null
   })
 
   ipcMain.on('start', () => {
-    exec(closeOtherApps)
-    exec(enableDoNotDisturb)
-    exec(enableDockAutohide)
+    runApplescript(checkDockAutohide)
+      .then(result => {
+        userConfig.dockAutohide = result
+        exec(closeOtherApps)
+        exec(enableDoNotDisturb)
+        exec(enableDockAutohide)
+      })
   })
 
   ipcMain.on('reset', () => {
     exec(disableDoNotDisturb)
-    if (initialUserConfig.dockAutohide !== 'true') {
+    if (userConfig.dockAutohide === 'false') {
       exec(disableDockAutohide)
     }
   })
