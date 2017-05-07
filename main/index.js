@@ -53,9 +53,9 @@ const createWindow = () => {
         exec(closeOtherApps)
         exec(enableDoNotDisturb)
         exec(enableDockAutohide)
-        const scriptOnStart = config.get('scriptOnStart')
-        if(scriptOnStart) {
-          exec(scriptOnStart)
+        const startScript = config.get('startScript')
+        if(startScript) {
+          exec(`sleep 3;${startScript}`)
         }
       })
   })
@@ -70,6 +70,10 @@ const createWindow = () => {
   ipcMain.on('finish', () => {
     mainWindow.show()
     shell.beep()
+    const finishScript = config.get('finishScript')
+    if(finishScript) {
+      exec(`sleep 3;${finishScript}`)
+    }
   })
 }
 

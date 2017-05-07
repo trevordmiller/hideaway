@@ -23,6 +23,8 @@ class Timer extends Component {
 
   reset = () => {
     const {minuteIntervalId, totalMinutesTimeoutId} = this.state
+    const {onTimerReset} = this.props
+    onTimerReset()
     clearInterval(minuteIntervalId)
     clearTimeout(totalMinutesTimeoutId)
     this.setState(initialState)
@@ -50,6 +52,8 @@ class Timer extends Component {
 
   handleStart = () => {
     const {totalMinutes} = this.state
+    const {onTimerStart} = this.props
+    onTimerStart()
     this.setState({
       isOn: true,
       minuteIntervalId: setInterval(this.minutePassed, oneMinute),

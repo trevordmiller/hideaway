@@ -11,6 +11,7 @@ class Hideaway extends Component {
   state = {
     hasCompletedIntro: true,
     isSettingsActive: false,
+    isTimerOn: false,
   }
 
   componentDidMount = () => {
@@ -34,8 +35,20 @@ class Hideaway extends Component {
     })
   }
 
+  handleTimerStart = () => {
+    this.setState({
+      isTimerOn: true,
+    })
+  }
+
+  handleTimerReset = () => {
+    this.setState({
+      isTimerOn: false,
+    })
+  }
+
   render() {
-    const {hasCompletedIntro, isSettingsActive} = this.state
+    const {hasCompletedIntro, isSettingsActive, isTimerOn} = this.state
     return (
       <main style={{
         minHeight: '100vh',
@@ -46,7 +59,7 @@ class Hideaway extends Component {
         justifyContent: 'center',
         position: 'relative',
       }}>
-        {hasCompletedIntro
+        {hasCompletedIntro && !isTimerOn
           ? <nav style={{
               position: 'absolute',
               fontSize: fontSizes.large,
@@ -68,7 +81,10 @@ class Hideaway extends Component {
         {hasCompletedIntro
           ? isSettingsActive
             ? <Settings />
-            : <Timer />
+            : <Timer 
+                onTimerStart={this.handleTimerStart} 
+                onTimerReset={this.handleTimerReset}
+              />
           : <Intro handleCompleteIntro={this.handleCompleteIntro} />
         }
       </main>
