@@ -2,7 +2,7 @@ import {ipcRenderer} from 'electron'
 import React, {Component} from 'react'
 import {spacing} from '../utils/styleGuide'
 import Button from './Button'
-import Heading from './Heading'
+import Paragraph from './Paragraph'
 import Textarea from './Textarea'
 
 class ConfigForm extends Component {
@@ -45,9 +45,13 @@ class ConfigForm extends Component {
     return (
       <div>
 
-        <Heading>
-          {description}
-        </Heading>
+        <div style={{
+          marginBottom: spacing.xsmall,
+        }}>
+          <Paragraph>
+            {description}
+          </Paragraph>
+        </div>
 
         <Textarea
           value={value}

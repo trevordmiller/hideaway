@@ -46,22 +46,25 @@ class Hideaway extends Component {
         justifyContent: 'center',
         position: 'relative',
       }}>
-        <nav style={{
-          position: 'absolute',
-          fontSize: fontSizes.large,
-          top: spacing.large,
-          right: spacing.large,
-          color: isSettingsActive
-            ? uiGroups.userCurrentState
-            : uiGroups.gray4
-        }}>
-          <a onClick={this.handleSettingsToggle}>
-            {isSettingsActive
-              ? <FaClose />
-              : <FaCog />
-            }
-          </a>
-        </nav>
+        {hasCompletedIntro
+          ? <nav style={{
+              position: 'absolute',
+              fontSize: fontSizes.large,
+              top: spacing.large,
+              right: spacing.large,
+              color: isSettingsActive
+                ? uiGroups.userCurrentState
+                : uiGroups.gray4
+            }}>
+              <a onClick={this.handleSettingsToggle}>
+                {isSettingsActive
+                  ? <FaClose />
+                  : <FaCog />
+                }
+              </a>
+            </nav>
+          : null
+        }
         {hasCompletedIntro
           ? isSettingsActive
             ? <Settings />
