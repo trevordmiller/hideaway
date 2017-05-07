@@ -40,7 +40,7 @@ class ConfigForm extends Component {
 
   render() {
     const {value, isSaved} = this.state
-    const {description} = this.props
+    const {description, placeholder} = this.props
 
     return (
       <div>
@@ -55,6 +55,7 @@ class ConfigForm extends Component {
 
         <Textarea
           value={value}
+          placeholder={placeholder}
           onChange={this.handleValueChange}
         />
 

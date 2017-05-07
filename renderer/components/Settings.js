@@ -14,6 +14,7 @@ const Settings = () => (
             <ConfigForm 
               description='Websites to block during Hideaway'
               configKey='blockedWebsites'
+              placeholder='twitter.com&#x0a;facebook.com'
             />
           ),
         },
@@ -23,6 +24,7 @@ const Settings = () => (
             <ConfigForm 
               description='Shell script to run on Hideaway start'
               configKey='startScript'
+              placeholder='spotify play&#x0a;open "https://todoist.com"'
             />
           ),
         },
@@ -32,6 +34,7 @@ const Settings = () => (
             <ConfigForm 
               description='Shell script to run on Hideaway finish'
               configKey='finishScript'
+              placeholder='spotify pause&#x0a;open "https://mail.google.com"&#x0a;open -a Slack'
             />
           ),
         }
