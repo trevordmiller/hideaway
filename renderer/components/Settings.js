@@ -9,16 +9,6 @@ const Settings = () => (
     <Tabs
       tabs={[
         {
-          title: 'Websites',
-          render: (
-            <ConfigForm 
-              description='Websites to block during Hideaway'
-              configKey='blockedWebsites'
-              placeholder='twitter.com&#x0a;facebook.com'
-            />
-          ),
-        },
-        {
           title: 'Start',
           render: (
             <ConfigForm 
@@ -37,7 +27,7 @@ const Settings = () => (
               placeholder='spotify pause&#x0a;open "https://mail.google.com"&#x0a;open -a Slack'
             />
           ),
-        }
+        },
       ]}
     />
   </div>

@@ -55,7 +55,6 @@
     "react-dom": "^15.5.4",
     "react-icons": "^2.2.4",
     "react-numeric-input": "^2.0.7",
-    "run-applescript": "^3.0.0",
-    "sudo-prompt": "^7.0.0"
+    "run-applescript": "^3.0.0"
   }
 }
