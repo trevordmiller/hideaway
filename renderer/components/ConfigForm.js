@@ -14,7 +14,7 @@ class ConfigForm extends Component {
 
   componentDidMount = () => {
     const {configKey} = this.props
-    const value = ipcRenderer.sendSync('getConfig', configKey) 
+    const value = ipcRenderer.sendSync('configGet', configKey) 
     if(value) {
       this.setState({
         value,
@@ -32,7 +32,7 @@ class ConfigForm extends Component {
   handleSave = () => {
     const {value} = this.state
     const {configKey} = this.props
-    ipcRenderer.send('setConfig', configKey, value) 
+    ipcRenderer.send('configSet', configKey, value) 
     this.setState({
       isSaved: true,
     })
@@ -63,9 +63,7 @@ class ConfigForm extends Component {
           marginTop: spacing.small,
           visibility: isSaved ? 'hidden' : 'visible',
         }}>
-          <Button 
-            onClick={this.handleSave}
-          >
+          <Button onClick={this.handleSave}>
             Save
           </Button>
         </div>

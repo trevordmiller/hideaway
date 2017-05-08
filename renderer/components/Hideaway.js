@@ -15,14 +15,14 @@ class Hideaway extends Component {
   }
 
   componentDidMount = () => {
-    const hasCompletedIntro = ipcRenderer.sendSync('getConfig', 'hasCompletedIntro') 
+    const hasCompletedIntro = ipcRenderer.sendSync('configGet', 'hasCompletedIntro') 
     this.setState({
       hasCompletedIntro,
     })
   }
 
   handleCompleteIntro = () => {
-    ipcRenderer.send('setConfig', 'hasCompletedIntro', true) 
+    ipcRenderer.send('configSet', 'hasCompletedIntro', true) 
     this.setState({
       hasCompletedIntro: true,
     })

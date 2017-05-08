@@ -2,6 +2,7 @@ const {app, BrowserWindow, ipcMain, shell} = require('electron')
 const Config = require('electron-config')
 const exec = require('child_process').exec
 const runApplescript = require('run-applescript')
+const {uiGroups} = require('nova-colors')
 const closeOtherApps = require('./utils/closeOtherApps')
 const enableDoNotDisturb = require('./utils/enableDoNotDisturb')
 const disableDoNotDisturb = require('./utils/disableDoNotDisturb')
@@ -15,19 +16,15 @@ const config = new Config()
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    show: false,
     width: 500, 
     height: 500,
+    backgroundColor: uiGroups.background,
   })
 
   mainWindow.loadURL(process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : 'next://app'
   )
-
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.show()
-  })
 
   if(process.env.NODE_ENV === 'development') {
     mainWindow.webContents.openDevTools()
@@ -37,13 +34,19 @@ const createWindow = () => {
     mainWindow = null
   })
 
-  ipcMain.on('getConfig', (event, key) => {
+  ipcMain.on('configGet', (event, key) => {
     const value = config.get(key)
     event.returnValue = value || false
   })
 
-  ipcMain.on('setConfig', (event, key, value) => {
+  ipcMain.on('configSet', (event, key, value) => {
     config.set(key, value)
+  })
+
+  ipcMain.on('configWipe', () => {
+    config.clear()
+    app.relaunch()
+    app.quit()
   })
 
   ipcMain.on('start', () => {

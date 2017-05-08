@@ -1,6 +1,10 @@
+import {ipcRenderer} from 'electron'
 import React from 'react'
+import {spacing} from '../utils/styleGuide'
 import Tabs from './Tabs'
 import ConfigForm from './ConfigForm'
+import Paragraph from './Paragraph'
+import Button from './Button'
 
 const Settings = () => (
   <div style={{
@@ -26,6 +30,25 @@ const Settings = () => (
               configKey='finishScript'
               placeholder='spotify pause&#x0a;open "https://mail.google.com"&#x0a;open -a Slack'
             />
+          ),
+        },
+        {
+          title: 'Wipe',
+          render: (
+            <div>
+              <div style={{
+                marginBottom: spacing.xsmall,
+              }}>
+                <Paragraph>
+                  Wipe the app data
+                </Paragraph>
+              </div>
+              <Button onClick={() => {
+                ipcRenderer.send('configWipe') 
+              }}>
+                Wipe
+              </Button>
+            </div>
           ),
         },
       ]}
