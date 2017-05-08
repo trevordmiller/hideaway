@@ -12,10 +12,6 @@ const disableDockAutohide = require('./utils/disableDockAutohide')
 let mainWindow
 let sessionConfig = {}
 const config = new Config()
-const sudoPromptOptions = {
-  name: 'Hideaway',
-  icns: '/Applications/Hideaway.app/Contents/Resources/electron.icns'
-}
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
