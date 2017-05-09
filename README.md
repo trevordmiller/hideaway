@@ -1,6 +1,6 @@
 # hideaway
 
-A native desktop app built with Electron to create single tasking sessions without distractions
+A Mac app to escape distractions
 
 ## Contributing
 

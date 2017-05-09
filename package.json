@@ -8,7 +8,7 @@
     "dev": "concurrently -k 'next renderer' 'NODE_ENV=development electron main' -p '{name}' -n 'next,electron' -c 'blue,green'",
     "verify": "yarn lint && yarn build",
     "lint": "eslint .",
-    "build": "next build renderer && build",
+    "build": "next build renderer && build --mac",
     "stage": "git checkout master && git pull && yarn build -- --dir",
     "release": "yarn version && yarn build && git push && git push --tags"
   },
