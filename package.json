@@ -6,7 +6,7 @@
   "main": "main/index.js",
   "scripts": {
     "dev": "concurrently -k 'next renderer' 'NODE_ENV=development electron main' -p '{name}' -n 'next,electron' -c 'blue,green'",
-    "verify": "yarn lint && yarn build",
+    "verify": "yarn lint && next build renderer",
     "lint": "eslint .",
     "build": "next build renderer && build --mac",
     "stage": "git checkout master && git pull && yarn build -- --dir && open './dist/mac/Hideaway.app'",
