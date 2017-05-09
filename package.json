@@ -9,7 +9,7 @@
     "verify": "yarn lint && yarn build",
     "lint": "eslint .",
     "build": "next build renderer && build --mac",
-    "stage": "git checkout master && git pull && yarn build -- --dir",
+    "stage": "git checkout master && git pull && yarn build -- --dir && open './dist/mac/Hideaway.app'",
     "release": "yarn version && yarn build -p && git push && git push --tags"
   },
   "eslintConfig": {
