@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "build": "next build renderer && build --mac",
     "stage": "git checkout master && git pull && yarn build -- --dir",
-    "release": "yarn version && yarn build && git push && git push --tags"
+    "release": "yarn version && yarn build -p && git push && git push --tags"
   },
   "eslintConfig": {
     "extends": [
