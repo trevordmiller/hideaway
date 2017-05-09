@@ -1,11 +1,12 @@
 import {ipcRenderer} from 'electron'
+import dev from 'electron-is-dev'
 import React, {Component} from 'react'
 import {uiGroups} from 'nova-colors'
 import {spacing, fontSizes, lineHeights} from '../utils/styleGuide'
 import TimeInput from './TimeInput'
 import Button from './Button'
 
-const oneMinute = process.env.NODE_ENV === 'development'
+const oneMinute = dev
   ? 1000
   : 60000
 

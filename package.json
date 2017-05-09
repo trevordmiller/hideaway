@@ -5,7 +5,7 @@
   "author": "Trevor D. Miller (https://trevordmiller.com)",
   "main": "main/index.js",
   "scripts": {
-    "dev": "concurrently -k 'next renderer' 'NODE_ENV=development electron main' -p '{name}' -n 'next,electron' -c 'blue,green'",
+    "dev": "electron main",
     "verify": "yarn lint && next build renderer",
     "lint": "eslint .",
     "build": "next build renderer && build --mac",
@@ -66,15 +66,17 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "concurrently": "^3.4.0",
     "electron": "^1.6.6",
     "electron-builder": "^17.3.1",
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^6.10.3"
   },
   "dependencies": {
+    "app-root-path": "^2.0.1",
     "babili-webpack-plugin": "^0.0.11",
     "electron-config": "^1.0.0",
+    "electron-is-dev": "^0.1.2",
+    "electron-routes": "^1.0.0",
     "next": "^2.3.1",
     "nova-colors": "^2.1.5",
     "react": "^15.5.4",
