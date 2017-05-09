@@ -1,7 +1,7 @@
 {
   "name": "hideaway",
   "version": "0.7.0",
-  "description": "Escape distractions",
+  "description": "A Mac app to escape distractions",
   "author": "Trevor D. Miller (https://trevordmiller.com)",
   "main": "main/index.js",
   "scripts": {
