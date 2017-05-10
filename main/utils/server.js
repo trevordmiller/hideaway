@@ -53,6 +53,7 @@ module.exports = async () => {
   server.listen(3000, () => {
 
     mainWindow = new BrowserWindow({
+      show: false,
       width: 500, 
       height: 500,
       backgroundColor: uiGroups.background,
@@ -62,6 +63,10 @@ module.exports = async () => {
       ? 'http://localhost:3000'
       : 'next://app'
     )
+
+    mainWindow.on('ready-to-show', () => {
+      mainWindow.show()
+    })
 
     if(dev) {
       mainWindow.webContents.openDevTools()

@@ -57,6 +57,13 @@ const Screen = ({children}) => (
             cursor: pointer;
           }
 
+
+          input::placeholder {
+            color: ${uiGroups.backgroundShade};
+          }
+          input {
+            border: 0 !important;
+          }
           textarea {
             border: ${borderSizes.small}px solid transparent;
             transition: border ${animationSpeeds.xfast}s;
@@ -64,13 +71,6 @@ const Screen = ({children}) => (
           textarea:hover, textarea:focus {
             border: ${borderSizes.small}px solid ${uiGroups.userCurrentState};
             cursor: pointer;
-          }
-
-          input::placeholder {
-            color: ${uiGroups.backgroundShade};
-          }
-          input {
-            border: 0 !important;
           }
         `}
       </style>
