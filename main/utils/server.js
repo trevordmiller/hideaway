@@ -1,9 +1,10 @@
-const {app, BrowserWindow, ipcMain, shell} = require('electron')
-const dev = require('electron-is-dev')
-const Config = require('electron-config')
 const fs = require('fs')
 const {createServer} = require('http')
 const exec = require('child_process').exec
+const {app, BrowserWindow, ipcMain, shell} = require('electron')
+const dev = require('electron-is-dev')
+const Config = require('electron-config')
+require('electron-debug')({showDevTools: true})
 const next = require('next')
 const {resolve} = require('app-root-path')
 const {uiGroups} = require('nova-colors')
@@ -67,10 +68,6 @@ module.exports = async () => {
     mainWindow.on('ready-to-show', () => {
       mainWindow.show()
     })
-
-    if(dev) {
-      mainWindow.webContents.openDevTools()
-    }
 
     ipcMain.on('configGet', (event, key) => {
       const value = config.get(key)
