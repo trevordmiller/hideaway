@@ -6,11 +6,11 @@
   "main": "main/index.js",
   "scripts": {
     "dev": "electron main",
-    "verify": "yarn lint && next build renderer",
+    "verify": "npm run lint && next build renderer",
     "lint": "eslint .",
     "build": "next build renderer && build --mac",
-    "stage": "git checkout master && git pull && yarn build -- --dir && open './dist/mac/Hideaway.app'",
-    "release": "yarn version && yarn build -p && git add -A && git commit -m 'Release' && git push && git push --tags"
+    "stage": "git checkout master && git pull && npm run build -- --dir && open './dist/mac/Hideaway.app'",
+    "release": "npm version && npm run build -p && git add -A && git commit -m 'Release' && git push && git push --tags"
   },
   "eslintConfig": {
     "extends": [
