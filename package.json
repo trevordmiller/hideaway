@@ -1,16 +1,17 @@
 {
   "name": "hideaway",
   "version": "0.7.0",
-  "description": "A Mac app to escape distractions",
+  "description": "A Mac app to escape distractions for a set amount of time",
   "author": "Trevor D. Miller (https://trevordmiller.com)",
   "main": "main/index.js",
   "scripts": {
-    "dev": "electron main",
-    "verify": "npm run lint && next build renderer",
+    "dev": "electron .",
+    "verify": "npm run lint",
     "lint": "eslint .",
-    "build": "next build renderer && build --mac",
-    "stage": "git checkout master && git pull && npm run build -- --dir && open './dist/mac/Hideaway.app'",
-    "release": "npm version && npm run build -p && git add -A && git commit -m 'Release' && git push && git push --tags"
+    "build": "next build renderer && next export renderer",
+    "dist": "npm run build && build --dir",
+    "stage": "git checkout master && git pull && npm run dist && open './dist/mac/Hideaway.app'",
+    "release": "npm version && git add -A && git commit -m 'Release' && git push && git push --tags"
   },
   "eslintConfig": {
     "extends": [
@@ -46,44 +47,31 @@
   "build": {
     "appId": "com.trevordmiller.hideaway",
     "mac": {
-      "category": "public.app-category.productivity",
-      "icon": "main/static/icons/icon.icns"
+      "icon": "main/static/icon.icns"
     },
-    "files": [
-      "main",
-      "node_modules"
-    ],
     "extraResources": [
       {
-        "from": "renderer",
-        "to": "app/renderer",
-        "filter": [
-          ".next",
-          "static"
-        ]
+        "from": "renderer/out",
+        "to": "app/renderer"
       }
-    ]
+    ],
+    "asar": false
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "devtron": "^1.4.0",
-    "electron": "^1.6.6",
-    "electron-builder": "^17.3.1",
     "eslint": "^3.19.0",
-    "eslint-plugin-react": "^6.10.3"
+    "eslint-plugin-react": "^6.10.3",
+    "electron": "1.6.2",
+    "electron-builder": "19.16.0",
+    "next": "3.0.1-beta.15",
+    "react": "15.6.1",
+    "react-dom": "15.6.1"
   },
   "dependencies": {
-    "app-root-path": "^2.0.1",
-    "babili-webpack-plugin": "^0.0.11",
     "electron-config": "^1.0.0",
-    "electron-debug": "^1.1.0",
-    "electron-is-dev": "^0.1.2",
-    "electron-log": "^2.2.4",
-    "electron-routes": "^1.0.0",
-    "next": "^2.3.1",
+    "electron-is-dev": "0.2.0",
+    "electron-next": "3.0.7",
     "nova-colors": "^2.1.5",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
     "react-icons": "^2.2.4",
     "react-numeric-input": "^2.0.7",
     "run-applescript": "^3.0.0"

@@ -1,17 +1,8 @@
-const BabiliPlugin = require('babili-webpack-plugin')
-
 module.exports = {
-  webpack(config, {dev}) {
-    config.target = 'electron-renderer'
-
-    config.plugins = config.plugins.filter(plugin => {
-      return plugin.constructor.name !== 'UglifyJsPlugin'
-    })
-
-    if (!dev) {
-      config.plugins.push(new BabiliPlugin())
+  exportPathMap() {
+    // Let Next.js know where to find the entry page on export
+    return {
+      '/start': { page: '/start' }
     }
-
-    return config
   }
 }
