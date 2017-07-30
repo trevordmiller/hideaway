@@ -53,7 +53,9 @@ const Screen = ({ children }) =>
             cursor: pointer;
           }
 
-
+          ::-webkit-input-placeholder {
+            color: ${uiGroups.backgroundShade};
+          }
           input::placeholder {
             color: ${uiGroups.backgroundShade};
           }
