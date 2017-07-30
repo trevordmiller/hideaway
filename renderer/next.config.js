@@ -1,8 +1,11 @@
 module.exports = {
+  webpack(config) {
+    config.target = 'electron-renderer'
+    return config
+  },
   exportPathMap() {
-    // Let Next.js know where to find the entry page on export
     return {
-      '/start': { page: '/start' }
+      '/start': { page: '/start' },
     }
   }
 }
