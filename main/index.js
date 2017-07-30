@@ -1,11 +1,11 @@
-const {join} = require('path')
-const {format} = require('url')
+const { join } = require('path')
+const { format } = require('url')
 const exec = require('child_process').exec
-const {BrowserWindow, app, ipcMain, shell} = require('electron')
+const { BrowserWindow, app, ipcMain, shell } = require('electron')
 const isDev = require('electron-is-dev')
 const prepareNext = require('electron-next')
 const Config = require('electron-config')
-const {uiGroups} = require('nova-colors')
+const { uiGroups } = require('nova-colors')
 const runApplescript = require('run-applescript')
 const closeOtherApps = require('./utils/closeOtherApps')
 const enableDoNotDisturb = require('./utils/enableDoNotDisturb')
@@ -21,16 +21,18 @@ app.on('ready', async () => {
   await prepareNext('./renderer')
 
   const mainWindow = new BrowserWindow({
-    width: 500, 
+    width: 500,
     height: 500,
     backgroundColor: uiGroups.background,
   })
 
-  const url = isDev ? 'http://localhost:8000/start' : format({
-    pathname: join(__dirname, '../renderer/start/index.html'),
-    protocol: 'file:',
-    slashes: true
-  })
+  const url = isDev
+    ? 'http://localhost:8000/start'
+    : format({
+        pathname: join(__dirname, '../renderer/start/index.html'),
+        protocol: 'file:',
+        slashes: true,
+      })
 
   mainWindow.loadURL(url)
 
@@ -50,17 +52,16 @@ app.on('ready', async () => {
   })
 
   ipcMain.on('start', () => {
-    runApplescript(checkDockAutohide)
-      .then(result => {
-        sessionConfig.dockAutohide = result === 'true' ? true : false
-        exec(closeOtherApps)
-        exec(enableDoNotDisturb)
-        exec(enableDockAutohide)
-        const startScript = config.get('startScript')
-        if(startScript) {
-          exec(`sleep 3;${startScript}`)
-        }
-      })
+    runApplescript(checkDockAutohide).then(result => {
+      sessionConfig.dockAutohide = result === 'true' ? true : false
+      exec(closeOtherApps)
+      exec(enableDoNotDisturb)
+      exec(enableDockAutohide)
+      const startScript = config.get('startScript')
+      if (startScript) {
+        exec(`sleep 3;${startScript}`)
+      }
+    })
   })
 
   ipcMain.on('reset', () => {
@@ -74,7 +75,7 @@ app.on('ready', async () => {
     mainWindow.show()
     shell.beep()
     const finishScript = config.get('finishScript')
-    if(finishScript) {
+    if (finishScript) {
       exec(`sleep 3;${finishScript}`)
     }
   })

@@ -1,8 +1,8 @@
 import React from 'react'
-import {uiGroups, spacing, borderRadii, fontSizes} from '../utils/styleGuide'
+import { uiGroups, spacing, borderRadii, fontSizes } from '../utils/styleGuide'
 
-const Button = ({children, onClick}) => (
-  <button 
+const Button = ({ children, onClick }) =>
+  <button
     onClick={onClick}
     style={{
       display: 'inline-block',
@@ -17,6 +17,5 @@ const Button = ({children, onClick}) => (
   >
     {children}
   </button>
-)
 
 export default Button

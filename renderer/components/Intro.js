@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {spacing} from '../utils/styleGuide'
+import React, { Component } from 'react'
+import { spacing } from '../utils/styleGuide'
 import Heading from './Heading'
 import Image from './Image'
 import Paragraph from './Paragraph'
@@ -41,58 +41,61 @@ const steps = [
 ]
 
 class Intro extends Component {
-
   state = {
     currentStep: 0,
   }
 
   handleNextStep = () => {
-    const {currentStep} = this.state
+    const { currentStep } = this.state
     this.setState({
       currentStep: currentStep + 1,
     })
   }
 
   render() {
-    const {currentStep} = this.state
-    const {handleCompleteIntro} = this.props
+    const { currentStep } = this.state
+    const { handleCompleteIntro } = this.props
     return (
-      <section style={{
-        textAlign: 'center',
-      }}>
+      <section
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        <Paragraph>To let Hideaway control your screen...</Paragraph>
 
-        <Paragraph>
-          To let Hideaway control your screen...
-        </Paragraph>
-
-        <div style={{
-          marginTop: spacing.small,
-          marginBottom: spacing.small,
-        }}>
-          <div style={{
-            marginBottom: spacing.xsmall,
-          }}>
+        <div
+          style={{
+            marginTop: spacing.small,
+            marginBottom: spacing.small,
+          }}
+        >
+          <div
+            style={{
+              marginBottom: spacing.xsmall,
+            }}
+          >
             <Heading>
               {steps[currentStep].description}
             </Heading>
           </div>
-          <div style={{
-            maxHeight: 200,
-          }}>
+          <div
+            style={{
+              maxHeight: 200,
+            }}
+          >
             <Image src={steps[currentStep].imageSrc} />
           </div>
         </div>
 
-        <Button onClick={currentStep < (steps.length - 1)
-          ? this.handleNextStep
-          : handleCompleteIntro
-        }>
-          {currentStep < (steps.length - 1)
-            ? 'Next'
-            : 'Done'
+        <Button
+          onClick={
+            currentStep < steps.length - 1
+              ? this.handleNextStep
+              : handleCompleteIntro
           }
+        >
+          {currentStep < steps.length - 1 ? 'Next' : 'Done'}
         </Button>
-
       </section>
     )
   }

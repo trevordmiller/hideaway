@@ -7,5 +7,5 @@ module.exports = {
     return {
       '/start': { page: '/start' },
     }
-  }
+  },
 }

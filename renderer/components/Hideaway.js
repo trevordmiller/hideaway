@@ -1,13 +1,12 @@
-import {ipcRenderer} from 'electron'
-import React, {Component} from 'react'
-import {FaClose, FaCog} from 'react-icons/lib/fa';
-import {spacing, fontSizes, uiGroups} from '../utils/styleGuide'
+import { ipcRenderer } from 'electron'
+import React, { Component } from 'react'
+import { FaClose, FaCog } from 'react-icons/lib/fa'
+import { spacing, fontSizes, uiGroups } from '../utils/styleGuide'
 import Intro from './Intro'
 import Settings from './Settings'
 import Timer from './Timer'
 
 class Hideaway extends Component {
-
   state = {
     hasCompletedIntro: true,
     isSettingsActive: false,
@@ -15,21 +14,24 @@ class Hideaway extends Component {
   }
 
   componentDidMount = () => {
-    const hasCompletedIntro = ipcRenderer.sendSync('configGet', 'hasCompletedIntro') 
+    const hasCompletedIntro = ipcRenderer.sendSync(
+      'configGet',
+      'hasCompletedIntro'
+    )
     this.setState({
       hasCompletedIntro,
     })
   }
 
   handleCompleteIntro = () => {
-    ipcRenderer.send('configSet', 'hasCompletedIntro', true) 
+    ipcRenderer.send('configSet', 'hasCompletedIntro', true)
     this.setState({
       hasCompletedIntro: true,
     })
   }
 
   handleSettingsToggle = () => {
-    const {isSettingsActive} = this.state
+    const { isSettingsActive } = this.state
     this.setState({
       isSettingsActive: !isSettingsActive,
     })
@@ -48,45 +50,44 @@ class Hideaway extends Component {
   }
 
   render() {
-    const {hasCompletedIntro, isSettingsActive, isTimerOn} = this.state
+    const { hasCompletedIntro, isSettingsActive, isTimerOn } = this.state
     return (
-      <main style={{
-        minHeight: '100vh',
-        padding: spacing.xlarge,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-      }}>
+      <main
+        style={{
+          minHeight: '100vh',
+          padding: spacing.xlarge,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+        }}
+      >
         {hasCompletedIntro && !isTimerOn
-          ? <nav style={{
-              position: 'absolute',
-              fontSize: fontSizes.large,
-              top: spacing.large,
-              right: spacing.large,
-              color: isSettingsActive
-                ? uiGroups.userCurrentState
-                : uiGroups.gray4
-            }}>
+          ? <nav
+              style={{
+                position: 'absolute',
+                fontSize: fontSizes.large,
+                top: spacing.large,
+                right: spacing.large,
+                color: isSettingsActive
+                  ? uiGroups.userCurrentState
+                  : uiGroups.gray4,
+              }}
+            >
               <a onClick={this.handleSettingsToggle}>
-                {isSettingsActive
-                  ? <FaClose />
-                  : <FaCog />
-                }
+                {isSettingsActive ? <FaClose /> : <FaCog />}
               </a>
             </nav>
-          : null
-        }
+          : null}
         {hasCompletedIntro
           ? isSettingsActive
             ? <Settings />
-            : <Timer 
-                onTimerStart={this.handleTimerStart} 
+            : <Timer
+                onTimerStart={this.handleTimerStart}
                 onTimerReset={this.handleTimerReset}
               />
-          : <Intro handleCompleteIntro={this.handleCompleteIntro} />
-        }
+          : <Intro handleCompleteIntro={this.handleCompleteIntro} />}
       </main>
     )
   }

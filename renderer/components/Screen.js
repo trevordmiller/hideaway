@@ -1,24 +1,20 @@
 import React from 'react'
 import Head from 'next/head'
 import {
-  uiGroups, 
-  fontFamilies, 
-  lineHeights, 
-  fontSizes, 
-  fontWeights, 
+  uiGroups,
+  fontFamilies,
+  lineHeights,
+  fontSizes,
+  fontWeights,
   animationSpeeds,
   borderSizes,
   opacities,
 } from '../utils/styleGuide'
 
-const Screen = ({children}) => (
+const Screen = ({ children }) =>
   <div>
-
     <Head>
-      <meta
-        name='viewport'
-        content='initial-scale=1.0, width=device-width'
-      />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <style>
         {`
           @font-face {
@@ -76,19 +72,19 @@ const Screen = ({children}) => (
       </style>
     </Head>
 
-    <div style={{
-      background: uiGroups.background,
-      color: uiGroups.gray4,
-      fontFamily: fontFamilies.primary,
-      fontSize: fontSizes.medium,
-      fontWeight: fontWeights.normal,
-      lineHeight: lineHeights.medium,
-      minHeight: '100vh',
-    }}>
+    <div
+      style={{
+        background: uiGroups.background,
+        color: uiGroups.gray4,
+        fontFamily: fontFamilies.primary,
+        fontSize: fontSizes.medium,
+        fontWeight: fontWeights.normal,
+        lineHeight: lineHeights.medium,
+        minHeight: '100vh',
+      }}
+    >
       {children}
     </div>
-
   </div>
-)
 
 export default Screen

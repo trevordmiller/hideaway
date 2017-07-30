@@ -1,11 +1,11 @@
 import React from 'react'
-import {uiGroups, spacing, fontSizes, fontFamilies} from '../utils/styleGuide'
+import { uiGroups, spacing, fontSizes, fontFamilies } from '../utils/styleGuide'
 import NumericInput from 'react-numeric-input'
 
-const TimeInput = ({value, onChange}) => (
-  <NumericInput 
-    value={value} 
-    onChange={onChange} 
+const TimeInput = ({ value, onChange }) =>
+  <NumericInput
+    value={value}
+    onChange={onChange}
     step={15}
     min={15}
     max={300}
@@ -26,6 +26,5 @@ const TimeInput = ({value, onChange}) => (
       },
     }}
   />
-)
 
 export default TimeInput

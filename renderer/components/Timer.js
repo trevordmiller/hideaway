@@ -1,14 +1,12 @@
-import {ipcRenderer} from 'electron'
+import { ipcRenderer } from 'electron'
 import dev from 'electron-is-dev'
-import React, {Component} from 'react'
-import {uiGroups} from 'nova-colors'
-import {spacing, fontSizes, lineHeights} from '../utils/styleGuide'
+import React, { Component } from 'react'
+import { uiGroups } from 'nova-colors'
+import { spacing, fontSizes, lineHeights } from '../utils/styleGuide'
 import TimeInput from './TimeInput'
 import Button from './Button'
 
-const oneMinute = dev
-  ? 1000
-  : 60000
+const oneMinute = dev ? 1000 : 60000
 
 const initialState = {
   isOn: false,
@@ -19,12 +17,11 @@ const initialState = {
 }
 
 class Timer extends Component {
-
   state = initialState
 
   reset = () => {
-    const {minuteIntervalId, totalMinutesTimeoutId} = this.state
-    const {onTimerReset} = this.props
+    const { minuteIntervalId, totalMinutesTimeoutId } = this.state
+    const { onTimerReset } = this.props
     onTimerReset()
     clearInterval(minuteIntervalId)
     clearTimeout(totalMinutesTimeoutId)
@@ -38,13 +35,13 @@ class Timer extends Component {
   }
 
   minutePassed = () => {
-    const {minutesLeft} = this.state
+    const { minutesLeft } = this.state
     this.setState({
       minutesLeft: minutesLeft - 1,
     })
   }
 
-  handleTotalMinutesChange = (totalMinutes) => {
+  handleTotalMinutesChange = totalMinutes => {
     this.setState({
       totalMinutes,
       minutesLeft: totalMinutes,
@@ -52,8 +49,8 @@ class Timer extends Component {
   }
 
   handleStart = () => {
-    const {totalMinutes} = this.state
-    const {onTimerStart} = this.props
+    const { totalMinutes } = this.state
+    const { onTimerStart } = this.props
     onTimerStart()
     this.setState({
       isOn: true,
@@ -68,38 +65,39 @@ class Timer extends Component {
   }
 
   render() {
-    const {isOn, totalMinutes, minutesLeft} = this.state
+    const { isOn, totalMinutes, minutesLeft } = this.state
     return (
       <div>
-
         {isOn
-          ? <div style={{
-              fontSize: fontSizes.xlarge,
-              paddingTop: spacing.small,
-              paddingBottom: spacing.small,
-              color: uiGroups.userCurrentState,
-              textAlign: 'center',
-              lineHeight: lineHeights.small,
-            }}>
+          ? <div
+              style={{
+                fontSize: fontSizes.xlarge,
+                paddingTop: spacing.small,
+                paddingBottom: spacing.small,
+                color: uiGroups.userCurrentState,
+                textAlign: 'center',
+                lineHeight: lineHeights.small,
+              }}
+            >
               {minutesLeft}
             </div>
           : <TimeInput
-              value={totalMinutes} 
-              onChange={this.handleTotalMinutesChange} 
-            />
-        }
+              value={totalMinutes}
+              onChange={this.handleTotalMinutesChange}
+            />}
 
-        <div style={{
-          marginBottom: spacing.medium,
-          textAlign: 'center',
-        }}>
+        <div
+          style={{
+            marginBottom: spacing.medium,
+            textAlign: 'center',
+          }}
+        >
           {isOn ? 'minutes left' : 'minutes'}
         </div>
 
         <Button onClick={isOn ? this.handleStop : this.handleStart}>
           {`${isOn ? 'Stop' : 'Start'} Hideaway`}
         </Button>
-
       </div>
     )
   }

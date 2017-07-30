@@ -17,4 +17,3 @@ sleep 3
 `
 
 module.exports = disableDoNotDisturb
-
