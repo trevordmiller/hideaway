@@ -15,27 +15,27 @@ const Settings = () =>
     <Tabs
       tabs={[
         {
-          title: 'Start',
+          title: 'On Start',
           render: (
             <ConfigForm
               description="Shell script to run on Hideaway start"
               configKey="startScript"
-              placeholder="spotify play&#x0a;open &quot;https://todoist.com&quot;"
+              placeholder="open -a &quot;Reminders&quot;"
             />
           ),
         },
         {
-          title: 'Finish',
+          title: 'On Finish',
           render: (
             <ConfigForm
               description="Shell script to run on Hideaway finish"
               configKey="finishScript"
-              placeholder="spotify pause&#x0a;open &quot;https://mail.google.com&quot;&#x0a;open -a Slack"
+              placeholder="say &quot;Hideaway complete&quot;&#x0a;open &quot;https://twitter.com&quot;&#x0a;open -a &quot;Calendar&quot;&#x0a;open -a &quot;Mail&quot;&#x0a;open -a &quot;Slack&quot;"
             />
           ),
         },
         {
-          title: 'Wipe',
+          title: 'Reset',
           render: (
             <div>
               <div
@@ -43,7 +43,7 @@ const Settings = () =>
                   marginBottom: spacing.xsmall,
                 }}
               >
-                <Paragraph>Wipe the app data</Paragraph>
+                <Paragraph>Wipe all app data</Paragraph>
               </div>
               <Button
                 onClick={() => {

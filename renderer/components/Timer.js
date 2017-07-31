@@ -67,7 +67,13 @@ class Timer extends Component {
   render() {
     const { isOn, totalMinutes, minutesLeft } = this.state
     return (
-      <div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         {isOn
           ? <div
               style={{

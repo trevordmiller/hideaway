@@ -52,7 +52,7 @@ class Hideaway extends Component {
   render() {
     const { hasCompletedIntro, isSettingsActive, isTimerOn } = this.state
     return (
-      <main
+      <div
         style={{
           minHeight: '100vh',
           padding: spacing.xlarge,
@@ -80,15 +80,23 @@ class Hideaway extends Component {
               </a>
             </nav>
           : null}
-        {hasCompletedIntro
-          ? isSettingsActive
-            ? <Settings />
-            : <Timer
-                onTimerStart={this.handleTimerStart}
-                onTimerReset={this.handleTimerReset}
-              />
-          : <Intro handleCompleteIntro={this.handleCompleteIntro} />}
-      </main>
+
+        <main
+          style={{
+            width: '100%',
+            maxWidth: 500,
+          }}
+        >
+          {hasCompletedIntro
+            ? isSettingsActive
+              ? <Settings />
+              : <Timer
+                  onTimerStart={this.handleTimerStart}
+                  onTimerReset={this.handleTimerReset}
+                />
+            : <Intro handleCompleteIntro={this.handleCompleteIntro} />}
+        </main>
+      </div>
     )
   }
 }
