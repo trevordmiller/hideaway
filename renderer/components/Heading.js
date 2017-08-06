@@ -1,5 +1,5 @@
 import React from 'react'
-import { fontSizes, fontWeights, uiGroups } from '../utils/styleGuide'
+import { fontSizes, fontWeights, uiGroups } from '../utils/theme'
 
 const Heading = ({ children }) =>
   <h1

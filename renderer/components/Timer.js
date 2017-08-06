@@ -2,7 +2,7 @@ import { ipcRenderer } from 'electron'
 import dev from 'electron-is-dev'
 import React, { Component } from 'react'
 import { uiGroups } from 'nova-colors'
-import { spacing, fontSizes, lineHeights } from '../utils/styleGuide'
+import { spacing, fontSizes, lineHeights } from '../utils/theme'
 import TimeInput from './TimeInput'
 import Button from './Button'
 

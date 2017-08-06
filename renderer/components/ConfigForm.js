@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import React, { Component } from 'react'
-import { spacing } from '../utils/styleGuide'
+import { spacing } from '../utils/theme'
 import Button from './Button'
 import Paragraph from './Paragraph'
 import Textarea from './Textarea'

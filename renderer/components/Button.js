@@ -1,5 +1,5 @@
 import React from 'react'
-import { uiGroups, spacing, borderRadii, fontSizes } from '../utils/styleGuide'
+import { uiGroups, spacing, borderRadii, fontSizes } from '../utils/theme'
 
 const Button = ({ children, onClick }) =>
   <button

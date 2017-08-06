@@ -5,7 +5,7 @@ import {
   fontSizes,
   borderRadii,
   fontFamilies,
-} from '../utils/styleGuide'
+} from '../utils/theme'
 
 const Textarea = ({ value, placeholder, onChange }) =>
   <div>

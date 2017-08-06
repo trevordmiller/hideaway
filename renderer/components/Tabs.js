@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { uiGroups, spacing, borderSizes } from '../utils/styleGuide'
+import { uiGroups, spacing, borderSizes } from '../utils/theme'
 
 class Tabs extends Component {
   state = {

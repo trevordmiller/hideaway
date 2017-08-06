@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron'
 import React, { Component } from 'react'
 import { FaClose, FaCog } from 'react-icons/lib/fa'
-import { spacing, fontSizes, uiGroups } from '../utils/styleGuide'
+import { spacing, fontSizes, uiGroups } from '../utils/theme'
 import Intro from './Intro'
 import Settings from './Settings'
 import Timer from './Timer'

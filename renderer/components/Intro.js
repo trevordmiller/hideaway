@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { spacing } from '../utils/styleGuide'
+import { spacing } from '../utils/theme'
 import Heading from './Heading'
 import Image from './Image'
 import Paragraph from './Paragraph'

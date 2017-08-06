@@ -1,5 +1,5 @@
 import React from 'react'
-import { uiGroups, spacing, fontSizes, fontFamilies } from '../utils/styleGuide'
+import { uiGroups, spacing, fontSizes, fontFamilies } from '../utils/theme'
 import NumericInput from 'react-numeric-input'
 
 const TimeInput = ({ value, onChange }) =>

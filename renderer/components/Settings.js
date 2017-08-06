@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import React from 'react'
-import { spacing } from '../utils/styleGuide'
+import { spacing } from '../utils/theme'
 import Tabs from './Tabs'
 import ConfigForm from './ConfigForm'
 import Paragraph from './Paragraph'

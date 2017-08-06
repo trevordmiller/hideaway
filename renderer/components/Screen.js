@@ -9,7 +9,7 @@ import {
   animationSpeeds,
   borderSizes,
   opacities,
-} from '../utils/styleGuide'
+} from '../utils/theme'
 
 const Screen = ({ children }) =>
   <div>
