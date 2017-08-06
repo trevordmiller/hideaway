@@ -10,9 +10,8 @@
     "lint": "eslint .",
     "format": "prettier --no-semi --single-quote --trailing-comma es5 --write '{main,renderer/components,renderer/pages,renderer/utils}/**/*.js'",
     "precommit": "npm run format",
-    "build": "next build renderer && next export renderer",
-    "dist": "npm run build && build --dir",
-    "stage": "git checkout master && git pull && npm run dist && open './dist/mac/Hideaway.app'",
+    "build": "next build renderer && next export renderer && build --dir",
+    "stage": "git checkout master && git pull && npm run build && open './dist/mac/Hideaway.app'",
     "release": "npm version && git add -A && git commit -m 'Release' && git push && git push --tags"
   },
   "eslintConfig": {
@@ -61,23 +60,23 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "electron": "1.6.2",
-    "electron-builder": "19.16.0",
-    "eslint": "^3.19.0",
-    "eslint-plugin-react": "^6.10.3",
+    "electron": "1.6.11",
+    "electron-builder": "19.19.1",
+    "eslint": "^4.4.0",
+    "eslint-plugin-react": "^7.1.0",
     "husky": "^0.14.3",
-    "next": "3.0.1-beta.15",
+    "next": "3.0.1-beta.20",
     "prettier": "^1.5.3",
     "react": "15.6.1",
     "react-dom": "15.6.1"
   },
   "dependencies": {
     "electron-config": "^1.0.0",
-    "electron-is-dev": "0.2.0",
-    "electron-next": "3.0.7",
+    "electron-is-dev": "0.3.0",
+    "electron-next": "3.0.8",
     "nova-colors": "^2.1.5",
-    "react-icons": "^2.2.4",
-    "react-numeric-input": "^2.0.7",
+    "react-icons": "^2.2.5",
+    "react-numeric-input": "^2.1.0",
     "run-applescript": "^3.0.0"
   }
 }
