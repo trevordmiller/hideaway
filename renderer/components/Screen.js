@@ -14,6 +14,7 @@ import {
 const Screen = ({ children }) =>
   <div>
     <Head>
+      <title>Hideaway</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <style>
         {`
