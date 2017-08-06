@@ -12,7 +12,7 @@
     "precommit": "npm run format",
     "build": "next build renderer && next export renderer && build --dir",
     "stage": "git checkout master && git pull && npm run build && open './dist/mac/Hideaway.app'",
-    "release": "npm version && git add -A && git commit -m 'Release' && git push && git push --tags"
+    "release": "npm version && cd releases && create-dmg '../dist/mac/Hideaway.app' && cd .. && git add -A && git commit -m 'Release' && git push && git push --tags"
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +60,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "create-dmg": "^1.3.0",
     "electron": "1.6.11",
     "electron-builder": "19.19.1",
     "eslint": "^4.4.0",
