@@ -12,7 +12,7 @@
     "precommit": "npm run format",
     "build": "next build renderer && next export renderer && build --dir",
     "stage": "git checkout master && git pull && npm run build && open './dist/mac/Hideaway.app'",
-    "release": "npm version && cd dist/mac && create-dmg 'Hideaway.app' && cd ../../ && git add -A && git commit -m 'Release' && git push && git push --tags && open https://github.com/trevordmiller/hideaway/releases/new"
+    "release": "npm version && git add -A && git commit -m 'Release' && git push && git push --tags && cd dist/mac && create-dmg 'Hideaway.app' && cd ../../ && open https://github.com/trevordmiller/hideaway/releases/new"
   },
   "eslintConfig": {
     "extends": [
