@@ -2,7 +2,9 @@ import { ipcRenderer } from 'electron'
 import dev from 'electron-is-dev'
 import React, { Component } from 'react'
 import { uiGroups } from 'nova-colors'
-import { spacing, fontSizes, lineHeights } from '../utils/theme'
+import WobblySpinner from 'react-wobbly-spinner'
+import hexToRgba from 'hex-rgba'
+import { spacing, fontSizes } from '../utils/theme'
 import TimeInput from './TimeInput'
 import Button from './Button'
 
@@ -77,15 +79,40 @@ class Timer extends Component {
         {isOn
           ? <div
               style={{
-                fontSize: fontSizes.xlarge,
-                paddingTop: spacing.small,
-                paddingBottom: spacing.small,
-                color: uiGroups.userCurrentState,
-                textAlign: 'center',
-                lineHeight: lineHeights.small,
+                position: 'relative',
+                marginBottom: spacing.medium,
               }}
             >
-              {minutesLeft}
+              <div
+                style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: fontSizes.xlarge,
+                    color: uiGroups.userCurrentState,
+                    textAlign: 'center',
+                  }}
+                >
+                  {minutesLeft}
+                </div>
+              </div>
+
+              <WobblySpinner
+                diameter={90}
+                wobbleOffset={5}
+                thickness={5}
+                spinRate={2000}
+                outerColor={hexToRgba(uiGroups.userCurrentState, 25)}
+                innerColor={hexToRgba(uiGroups.userCurrentState, 50)}
+                wobbleColor={hexToRgba(uiGroups.userCurrentState, 75)}
+              />
             </div>
           : <TimeInput
               value={totalMinutes}

@@ -75,9 +75,11 @@
     "electron-config": "^1.0.0",
     "electron-is-dev": "0.3.0",
     "electron-next": "3.0.8",
+    "hex-rgba": "^1.0.1",
     "nova-colors": "^2.1.5",
     "react-icons": "^2.2.5",
     "react-numeric-input": "^2.1.0",
+    "react-wobbly-spinner": "^1.1.0",
     "run-applescript": "^3.0.0"
   }
 }
