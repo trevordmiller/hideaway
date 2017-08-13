@@ -7,10 +7,12 @@ import hexToRgba from 'hex-rgba'
 import { spacing, fontSizes } from '../utils/theme'
 import TimeInput from './TimeInput'
 import Button from './Button'
+import Label from './Label'
 
 const oneMinute = dev ? 1000 : 60000
 
 const initialState = {
+  hasCompletedFirstStart: true,
   isOn: false,
   totalMinutes: 30,
   minutesLeft: 30,
@@ -20,6 +22,16 @@ const initialState = {
 
 class Timer extends Component {
   state = initialState
+
+  componentDidMount = () => {
+    const hasCompletedFirstStart = ipcRenderer.sendSync(
+      'configGet',
+      'hasCompletedFirstStart'
+    )
+    this.setState({
+      hasCompletedFirstStart,
+    })
+  }
 
   reset = () => {
     const { minuteIntervalId, totalMinutesTimeoutId } = this.state
@@ -51,15 +63,25 @@ class Timer extends Component {
   }
 
   handleStart = () => {
-    const { totalMinutes } = this.state
+    const { hasCompletedFirstStart, totalMinutes } = this.state
     const { onTimerStart } = this.props
+
     onTimerStart()
+
     this.setState({
       isOn: true,
       minuteIntervalId: setInterval(this.minutePassed, oneMinute),
       totalMinutesTimeoutId: setTimeout(this.finish, totalMinutes * oneMinute),
     })
+
     ipcRenderer.send('start')
+
+    if (!hasCompletedFirstStart) {
+      ipcRenderer.send('configSet', 'hasCompletedFirstStart', true)
+      this.setState({
+        hasCompletedFirstStart: true,
+      })
+    }
   }
 
   handleStop = () => {
@@ -67,7 +89,12 @@ class Timer extends Component {
   }
 
   render() {
-    const { isOn, totalMinutes, minutesLeft } = this.state
+    const {
+      hasCompletedFirstStart,
+      isOn,
+      totalMinutes,
+      minutesLeft,
+    } = this.state
     return (
       <div
         style={{
@@ -131,6 +158,20 @@ class Timer extends Component {
         <Button onClick={isOn ? this.handleStop : this.handleStart}>
           {`${isOn ? 'Stop' : 'Start'} Hideaway`}
         </Button>
+
+        {!hasCompletedFirstStart &&
+          <div
+            style={{
+              textAlign: 'center',
+              maxWidth: 300,
+              marginTop: spacing.medium,
+            }}
+          >
+            <Label>
+              Starting closes all apps, hides your dock, and turns on Do Not
+              Disturb for the amount of time you have set
+            </Label>
+          </div>}
       </div>
     )
   }
